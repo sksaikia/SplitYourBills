@@ -1,5 +1,6 @@
-package com.example.demo.model;
+package com.example.demo.model.User;
 
+import com.example.demo.model.Role.Role;
 import com.example.demo.model.audit.DateAudit;
 import org.hibernate.annotations.NaturalId;
 

@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.model.Role;
 
 
 import org.hibernate.annotations.NaturalId;
