@@ -1,11 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.User;
+import com.example.demo.model.User.User;
 import com.example.demo.payload.ApiResponse;
 import com.example.demo.payload.JwtAuthenticationResponse;
 import com.example.demo.payload.LoginRequest;
 import com.example.demo.payload.SignUpRequest;
-import com.example.demo.repository.RoleRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.Collections;
 
 @RestController
 @RequestMapping("/api/auth")

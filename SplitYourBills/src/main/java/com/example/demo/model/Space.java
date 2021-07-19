@@ -1,12 +1,13 @@
 package com.example.demo.model;
 
 import com.example.demo.dto.AddNewSpaceDTO;
+import com.example.demo.model.audit.DateAudit;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="space")
-public class Space {
+public class Space extends DateAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long spaceId;

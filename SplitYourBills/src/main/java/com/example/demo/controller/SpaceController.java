@@ -24,7 +24,6 @@ public class SpaceController {
 
     @PostMapping("/add")
     public ResponseEntity<ApiResponse> addASpace(@RequestBody AddNewSpaceDTO space, @CurrentUser UserPrincipal currentUser){
-        System.out.println("Called : " );
         long userId = userController.getCurrentUserId(currentUser);
         spaceService.addSpace(space,userId);
         return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Created a new space for person id : " + userId), HttpStatus.CREATED);
