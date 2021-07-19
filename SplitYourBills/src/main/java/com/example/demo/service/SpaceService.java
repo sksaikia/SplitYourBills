@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.AddNewSpaceDTO;
+import com.example.demo.dto.SpaceDTO;
 import com.example.demo.model.Space;
 import com.example.demo.model.SpaceMembers;
 import com.example.demo.model.User.User;
@@ -58,6 +59,21 @@ public class SpaceService {
     private Space getSpaceFromDTO(AddNewSpaceDTO spaceDTO, long userId) {
         Space space = new Space(spaceDTO,userId);
         return space;
+    }
+    public List<SpaceDTO> getSpacesByPersonId(long userId){
+        List<Space> spaces =  spaceRepository.findAllByPersonId(userId);
+        List<SpaceDTO> spaceDTOS = new ArrayList<>();
+        for (Space s:spaces){
+            spaceDTOS.add(convertSpaceToDTO(s));
+        }
+        return spaceDTOS;
+
+
+    }
+
+    private SpaceDTO convertSpaceToDTO(Space s){
+        SpaceDTO spaceDTO = new SpaceDTO(s);
+        return spaceDTO;
     }
 
 

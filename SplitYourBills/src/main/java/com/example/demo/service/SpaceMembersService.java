@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -72,6 +74,15 @@ public class SpaceMembersService {
 
     private SpaceMembers getSpaceMembersFromDTO(SpaceMembersDTO spaceDTO, long userId) {
         SpaceMembers spaceMembers = new SpaceMembers(spaceDTO,userId);
+        return spaceMembers;
+    }
+
+    public List<SpaceMembers> getAllMembersBySpaceId(Long spaceId){
+        List<SpaceMembers> spaceMembers = new ArrayList<>();
+        if (spaceMembersRepository.existsBySpaceId(spaceId)){
+            spaceMembers = spaceMembersRepository.findAllBySpaceId(spaceId);
+            return spaceMembers;
+        }
         return spaceMembers;
     }
 
