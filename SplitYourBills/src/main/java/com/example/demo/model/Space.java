@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
-import com.example.demo.dto.AddNewSpaceDTO;
+import com.example.demo.dto.Spaces.AddNewSpaceDTO;
+import com.example.demo.model.User.User;
 import com.example.demo.model.audit.DateAudit;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 public class Space extends DateAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="space_id")
     private Long spaceId;
 
     @Column(name="person_id")
@@ -23,6 +25,18 @@ public class Space extends DateAudit {
 
     @Column(name="space_active")
     private Boolean isActive;
+
+    @ManyToOne
+    @JoinColumn(name = "person_id", referencedColumnName = "user_id",insertable = false,updatable = false)
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Long getSpaceId() {
         return spaceId;

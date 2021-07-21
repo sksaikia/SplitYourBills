@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.SpaceMembersDTO;
 import com.example.demo.model.Invites;
+import com.example.demo.model.Space;
+import com.example.demo.model.SpaceMembers;
 import com.example.demo.payload.ApiResponse;
 import com.example.demo.security.CurrentUser;
 import com.example.demo.security.UserPrincipal;
@@ -12,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -42,6 +45,13 @@ public class SpaceMembersController {
             return new ResponseEntity<ApiResponse>(new ApiResponse(true,"Invited"),HttpStatus.CREATED);
         else
             return new ResponseEntity<ApiResponse>(new ApiResponse(false,"Error"),HttpStatus.CREATED);
+    }
+
+
+    @GetMapping("/{spaceId}")
+    public ResponseEntity<List<SpaceMembersDTO>> getMembersBySpaceId(@PathVariable("spaceId") long spaceId){
+        List<SpaceMembersDTO> spaceMembers =  spaceMembersService.getAllMembersBySpaceId(spaceId);
+        return new ResponseEntity<>(spaceMembers,HttpStatus.OK);
     }
 
 }

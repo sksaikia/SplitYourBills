@@ -2,6 +2,7 @@ package com.example.demo.model.User;
 
 import com.example.demo.model.Role.Role;
 import com.example.demo.model.audit.DateAudit;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -46,6 +47,7 @@ public class User extends DateAudit {
 
     @NotBlank
     @Size(max = 100)
+    @JsonIgnore
     @Column(name="user_password")
     private String password;
 

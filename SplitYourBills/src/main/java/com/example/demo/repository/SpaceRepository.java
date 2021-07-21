@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface SpaceRepository extends JpaRepository<Space, Long> {
   List<Space> findAllByPersonId(Long PersonId);
+
 }
