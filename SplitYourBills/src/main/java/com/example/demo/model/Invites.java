@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import com.example.demo.dto.AddNewSpaceDTO;
 import com.example.demo.model.audit.DateAudit;
 
 import javax.persistence.*;

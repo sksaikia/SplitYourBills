@@ -49,8 +49,8 @@ public class SpaceMembersController {
 
 
     @GetMapping("/{spaceId}")
-    public ResponseEntity<List<SpaceMembers>> getMembersBySpaceId(@PathVariable("spaceId") long spaceId){
-        List<SpaceMembers> spaceMembers =  spaceMembersService.getAllMembersBySpaceId(spaceId);
+    public ResponseEntity<List<SpaceMembersDTO>> getMembersBySpaceId(@PathVariable("spaceId") long spaceId){
+        List<SpaceMembersDTO> spaceMembers =  spaceMembersService.getAllMembersBySpaceId(spaceId);
         return new ResponseEntity<>(spaceMembers,HttpStatus.OK);
     }
 

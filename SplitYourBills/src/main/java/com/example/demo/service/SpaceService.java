@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.AddNewSpaceDTO;
-import com.example.demo.dto.SpaceDTO;
+import com.example.demo.dto.Spaces.AddNewSpaceDTO;
+import com.example.demo.dto.Spaces.SpaceDTO;
 import com.example.demo.model.Space;
 import com.example.demo.model.SpaceMembers;
 import com.example.demo.model.User.User;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

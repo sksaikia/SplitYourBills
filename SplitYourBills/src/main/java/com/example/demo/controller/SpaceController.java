@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.AddNewSpaceDTO;
-import com.example.demo.dto.SpaceDTO;
-import com.example.demo.model.Space;
-import com.example.demo.model.User.UserSummary;
+import com.example.demo.dto.Spaces.AddNewSpaceDTO;
+import com.example.demo.dto.Spaces.SpaceDTO;
 import com.example.demo.payload.ApiResponse;
 import com.example.demo.security.CurrentUser;
 import com.example.demo.security.UserPrincipal;
@@ -13,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController

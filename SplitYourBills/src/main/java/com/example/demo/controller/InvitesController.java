@@ -1,12 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.AddNewSpaceDTO;
 import com.example.demo.model.Invites;
-import com.example.demo.payload.ApiResponse;
 import com.example.demo.security.CurrentUser;
 import com.example.demo.security.UserPrincipal;
 import com.example.demo.service.InvitesService;
-import com.example.demo.service.SpaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
-import com.example.demo.dto.AddNewSpaceDTO;
 import com.example.demo.dto.SpaceMembersDTO;
+import com.example.demo.model.User.User;
 import com.example.demo.model.audit.DateAudit;
 
 import javax.persistence.*;
@@ -27,6 +27,18 @@ public class SpaceMembers extends DateAudit {
 
     @Column(name="is_joined")
     private Boolean isJoined;
+
+    @ManyToOne
+    @JoinColumn(name = "person_id", referencedColumnName = "user_id",insertable = false,updatable = false)
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public SpaceMembers() {
     }

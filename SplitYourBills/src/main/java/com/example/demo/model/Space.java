@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-import com.example.demo.dto.AddNewSpaceDTO;
+import com.example.demo.dto.Spaces.AddNewSpaceDTO;
 import com.example.demo.model.User.User;
 import com.example.demo.model.audit.DateAudit;
 
@@ -11,6 +11,7 @@ import javax.persistence.*;
 public class Space extends DateAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="space_id")
     private Long spaceId;
 
     @Column(name="person_id")

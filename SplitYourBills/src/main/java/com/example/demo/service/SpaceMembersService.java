@@ -77,13 +77,24 @@ public class SpaceMembersService {
         return spaceMembers;
     }
 
-    public List<SpaceMembers> getAllMembersBySpaceId(Long spaceId){
+    public List<SpaceMembersDTO> getAllMembersBySpaceId(Long spaceId){
         List<SpaceMembers> spaceMembers = new ArrayList<>();
+        List<SpaceMembersDTO> spaceMembersDTOS  = new ArrayList<>();
         if (spaceMembersRepository.existsBySpaceId(spaceId)){
             spaceMembers = spaceMembersRepository.findAllBySpaceId(spaceId);
-            return spaceMembers;
+
+            for (SpaceMembers s : spaceMembers){
+                spaceMembersDTOS.add(getDTOFromSpaceMember(s));
+            }
+
         }
-        return spaceMembers;
+        return spaceMembersDTOS;
+    }
+
+    private SpaceMembersDTO getDTOFromSpaceMember(SpaceMembers s) {
+
+        SpaceMembersDTO spaceMembersDTO = new SpaceMembersDTO(s);
+        return spaceMembersDTO;
     }
 
 

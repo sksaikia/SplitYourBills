@@ -1,5 +1,6 @@
-package com.example.demo.dto;
+package com.example.demo.dto.Spaces;
 
+import com.example.demo.dto.Users.UserDetails;
 import com.example.demo.model.Space;
 
 public class SpaceDTO {
@@ -8,15 +9,6 @@ public class SpaceDTO {
     private String spaceDescription;
     private UserDetails userDetails;
     private boolean isActive;
-
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-
 
     public UserDetails getUserDTO() {
         return userDetails;
