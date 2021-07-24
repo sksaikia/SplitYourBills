@@ -1,4 +1,4 @@
-package com.example.splityourbillsandroid.di.modules.auth.main;
+package com.example.splityourbillsandroid.di.modules.auth;
 
 
 

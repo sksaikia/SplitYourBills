@@ -22,8 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitModule {
 
     private static final String TAG = "AppRetrofitModule";
-
-    static String BASE_URL = "http://10.0.2.2:3000/";
+    static String BASE_URL = "http://10.0.2.2:8080/";
 
 
     @Provides

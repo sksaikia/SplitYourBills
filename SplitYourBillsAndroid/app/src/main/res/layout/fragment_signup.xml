@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#050507"
+        android:id="@+id/parent_layout"
         android:orientation="vertical">
 
 
@@ -258,7 +259,7 @@
 
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_login"
+                android:id="@+id/btn_register"
                 style="@style/ButtonStyle"
                 android:layout_gravity="center"
                 android:textSize="15dp"

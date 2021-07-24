@@ -1,4 +1,4 @@
-package com.example.splityourbillsandroid.di.modules.auth.main;
+package com.example.splityourbillsandroid.di.modules.splash;
 
 import android.app.Application;
 import android.content.Context;
@@ -13,26 +13,29 @@ import com.example.splityourbillsandroid.ui.auth.AuthActivity;
 import com.example.splityourbillsandroid.ui.auth.AuthViewModel;
 import com.example.splityourbillsandroid.ui.main.MainActivity;
 import com.example.splityourbillsandroid.ui.main.MainViewModel;
+import com.example.splityourbillsandroid.ui.splash.SplashActivity;
+import com.example.splityourbillsandroid.ui.splash.SplashViewModel;
 
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public abstract class AuthActivityModule {
+public abstract class SplashActivityModule {
 
     @Provides
     @PerActivity
     @ActivityContext
-    static Context provideAuthActivityModule(AuthActivity activity){
+    static Context provideSplashActivityModule(SplashActivity activity){
         return activity;
     }
 
 
     @Provides
     @PerActivity
-    static AuthViewModel provideAuthViewModel(@ActivityContext Context context, Application application, AppDataManager appDataManager){
-        AuthViewModel vm = new AuthViewModel(appDataManager, application);
-        ViewModelFactory<AuthViewModel> factory = new ViewModelFactory<>(vm,appDataManager,application);
-        return ViewModelProviders.of((AuthActivity) context,factory).get(AuthViewModel.class);
+    static SplashViewModel provideSplashViewModel(@ActivityContext Context context, Application application, AppDataManager appDataManager){
+        SplashViewModel vm = new SplashViewModel(appDataManager, application);
+        ViewModelFactory<SplashViewModel> factory = new ViewModelFactory<>(vm,appDataManager,application);
+        return ViewModelProviders.of((SplashActivity) context,factory).get(SplashViewModel.class);
     }
+
 }

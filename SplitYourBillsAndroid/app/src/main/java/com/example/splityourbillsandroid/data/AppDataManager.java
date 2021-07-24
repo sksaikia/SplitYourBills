@@ -3,6 +3,9 @@ package com.example.splityourbillsandroid.data;
 import android.content.Context;
 
 
+import com.example.splityourbillsandroid.data.models.DefaultResponse;
+import com.example.splityourbillsandroid.data.models.authentication.LoginBody;
+import com.example.splityourbillsandroid.data.models.authentication.RegisterBody;
 import com.example.splityourbillsandroid.data.prefs.AppPreferencesHelper;
 import com.example.splityourbillsandroid.data.retrofit.AppApiHelper;
 import com.example.splityourbillsandroid.di.scopes.ApplicationContext;
@@ -41,4 +44,13 @@ public class AppDataManager implements AppDataManagerHelper{
         return preferencesHelper.getUserId();
     }
 
+    @Override
+    public Observable<Response<DefaultResponse>> registerUser(RegisterBody authBody) {
+        return apiHelper.registerUser(authBody);
+    }
+
+    @Override
+    public Observable<Response<DefaultResponse>> loginUser(LoginBody authBody) {
+        return apiHelper.loginUser(authBody);
+    }
 }
