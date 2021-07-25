@@ -18,6 +18,8 @@ import android.widget.LinearLayout;
 import com.example.splityourbillsandroid.R;
 import com.example.splityourbillsandroid.data.models.spaces.SpaceResponse;
 import com.example.splityourbillsandroid.ui.main.MainViewModel;
+import com.example.splityourbillsandroid.ui.main.spaceDetails.SpaceDetailsFragment;
+import com.example.splityourbillsandroid.utils.Constants;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -39,6 +41,9 @@ public class SpacesFragment extends Fragment {
     @Inject
     SpacesAdapter adapter;
 
+    @Inject
+    SpaceDetailsFragment spaceDetailsFragment;
+
 
     List<SpaceResponse> mList;
 
@@ -57,14 +62,17 @@ public class SpacesFragment extends Fragment {
 
             Log.d(TAG, "onClick: POsition ::: " + position);
 
-//
-//            String name = mList.get(position).getId();
-//
-//            Bundle bundle = new Bundle();
-//            bundle.putString(Constants.BUNDLE_ALL_TO_SINGLE_CAT, name);
-//            singleStudentFragment.setArguments(bundle);
 
-//            initializeFragments(singleStudentFragment);
+            //Convert it to long in the next fragment
+            String spaceId = String.valueOf(mList.get(position).getSpaceId());
+
+            Bundle bundle = new Bundle();
+            bundle.putString(Constants.SPACE_ID, spaceId);
+
+            spaceDetailsFragment.setArguments(bundle);
+
+            initializeFragments(spaceDetailsFragment);
+
 
         }
     };
