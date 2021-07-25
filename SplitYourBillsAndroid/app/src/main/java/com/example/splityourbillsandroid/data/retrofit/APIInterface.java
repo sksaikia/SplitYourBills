@@ -2,8 +2,12 @@ package com.example.splityourbillsandroid.data.retrofit;
 
 
 import com.example.splityourbillsandroid.data.models.DefaultResponse;
+import com.example.splityourbillsandroid.data.models.authentication.JWTResponse;
 import com.example.splityourbillsandroid.data.models.authentication.LoginBody;
 import com.example.splityourbillsandroid.data.models.authentication.RegisterBody;
+import com.example.splityourbillsandroid.data.models.spaces.SpaceResponse;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.Response;
@@ -16,12 +20,20 @@ import retrofit2.http.Path;
 
 public interface APIInterface {
 
-    //Registration
+    //Authentication
     @POST("api/auth/signup")
     Observable<Response<DefaultResponse>> registerUser(@Body RegisterBody authBody);
-
-    //Registration
     @POST("api/auth/signin")
-    Observable<Response<DefaultResponse>> loginUser(@Body LoginBody authBody);
+    Observable<Response<JWTResponse>> loginUser(@Body LoginBody authBody);
+
+
+
+
+
+
+
+    //Spaces
+    @GET("api/spaces/")
+    Observable<Response<List<SpaceResponse>>> getSpacesByUserId();
 
 }

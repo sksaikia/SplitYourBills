@@ -4,11 +4,15 @@ import android.content.Context;
 
 
 import com.example.splityourbillsandroid.data.models.DefaultResponse;
+import com.example.splityourbillsandroid.data.models.authentication.JWTResponse;
 import com.example.splityourbillsandroid.data.models.authentication.LoginBody;
 import com.example.splityourbillsandroid.data.models.authentication.RegisterBody;
+import com.example.splityourbillsandroid.data.models.spaces.SpaceResponse;
 import com.example.splityourbillsandroid.data.prefs.AppPreferencesHelper;
 import com.example.splityourbillsandroid.data.retrofit.AppApiHelper;
 import com.example.splityourbillsandroid.di.scopes.ApplicationContext;
+
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -50,7 +54,12 @@ public class AppDataManager implements AppDataManagerHelper{
     }
 
     @Override
-    public Observable<Response<DefaultResponse>> loginUser(LoginBody authBody) {
+    public Observable<Response<JWTResponse>> loginUser(LoginBody authBody) {
         return apiHelper.loginUser(authBody);
+    }
+
+    @Override
+    public Observable<Response<List<SpaceResponse>>> getSpacesByUserId() {
+        return apiHelper.getSpacesByUserId();
     }
 }
