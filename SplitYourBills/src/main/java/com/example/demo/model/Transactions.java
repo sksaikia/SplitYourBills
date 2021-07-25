@@ -2,12 +2,13 @@ package com.example.demo.model;
 
 import com.example.demo.dto.AddTransactionsDTO;
 import com.example.demo.model.User.User;
+import com.example.demo.model.audit.DateAudit;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="transactions")
-public class Transactions {
+public class Transactions extends DateAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transactionId;

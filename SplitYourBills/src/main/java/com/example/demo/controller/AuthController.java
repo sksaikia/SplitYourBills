@@ -1,10 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.User.User;
-import com.example.demo.payload.ApiResponse;
-import com.example.demo.payload.JwtAuthenticationResponse;
-import com.example.demo.payload.LoginRequest;
-import com.example.demo.payload.SignUpRequest;
+import com.example.demo.payload.*;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +42,7 @@ public class AuthController {
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest){
         Authentication authentication = authenticationManager.authenticate(
           new UsernamePasswordAuthenticationToken(
-                  loginRequest.getUsernameOrEmail(),
+                  loginRequest.getEmail(),
                   loginRequest.getPassword()
           )
         );
@@ -61,11 +58,11 @@ public class AuthController {
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest){
 
         if (userRepository.existsByName(signUpRequest.getEmail())){
-            return new ResponseEntity(new ApiResponse(false,"Username is already taken"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new ApiResponse(false,"Username is already taken"), HttpStatus.CONFLICT);
         }
 
         if (userRepository.existsByEmail(signUpRequest.getEmail())){
-            return new ResponseEntity(new ApiResponse(false,"Email address already exists"),HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new ApiResponse(false,"Email address already exists"),HttpStatus.CONFLICT);
         }
 
         User user = new User(signUpRequest.getName(),signUpRequest.getPhoneNo(), signUpRequest.getEmail(), signUpRequest.getPassword());

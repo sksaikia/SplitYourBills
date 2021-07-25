@@ -7,6 +7,15 @@ import com.example.demo.model.Transactions;
 public class AddTransactionsDTO {
     private long transactionId,spaceId,personId,amount;
     private String description;
+    private UserDetails userDetails;
+
+    public UserDetails getUserDetails() {
+        return userDetails;
+    }
+
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
+    }
 
     public long getTransactionId() {
         return transactionId;
@@ -57,6 +66,7 @@ public class AddTransactionsDTO {
         this.setPersonId(transactions.getPersonId());
         this.setAmount(transactions.getAmount());
         this.setDescription(transactions.getDescription());
+        this.userDetails = new UserDetails(transactions.getUser());
     }
 
 
