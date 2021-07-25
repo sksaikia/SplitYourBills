@@ -6,17 +6,56 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Content Container -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:layout_width="match_parent"
+        android:id="@+id/toolbar"
+        android:background="#050507"
+        android:layout_height="60dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_notifications"
+                android:layout_centerVertical="true">
+            </ImageView>
+
+        </RelativeLayout>
+
+    </com.google.android.material.appbar.MaterialToolbar>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/line"
+        android:layout_below="@id/toolbar"
+        android:background="#FFFFFF" />
 
     <FrameLayout android:layout_width="match_parent"
         android:layout_marginBottom="60dp"
+        android:layout_below="@+id/line"
         android:id="@+id/frame_layout_main"
         android:layout_height="match_parent"
         tools:context=".ui.auth.AuthActivity"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/line_second"
+        android:layout_above="@id/bottom_navigation"
+        android:background="#FFFFFF" />
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="#FFFFFF"
+        app:itemTextColor="#FFFFFF"
+        android:background="#050507"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         app:menu="@menu/activity_main_drawer" />
 

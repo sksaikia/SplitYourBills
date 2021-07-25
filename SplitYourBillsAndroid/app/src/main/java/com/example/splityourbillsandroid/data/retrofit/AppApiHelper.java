@@ -3,8 +3,12 @@ package com.example.splityourbillsandroid.data.retrofit;
 
 
 import com.example.splityourbillsandroid.data.models.DefaultResponse;
+import com.example.splityourbillsandroid.data.models.authentication.JWTResponse;
 import com.example.splityourbillsandroid.data.models.authentication.LoginBody;
 import com.example.splityourbillsandroid.data.models.authentication.RegisterBody;
+import com.example.splityourbillsandroid.data.models.spaces.SpaceResponse;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -28,7 +32,12 @@ public class AppApiHelper implements APIInterface{
     }
 
     @Override
-    public Observable<Response<DefaultResponse>> loginUser(LoginBody authBody) {
+    public Observable<Response<JWTResponse>> loginUser(LoginBody authBody) {
         return api.loginUser(authBody);
+    }
+
+    @Override
+    public Observable<Response<List<SpaceResponse>>> getSpacesByUserId() {
+        return api.getSpacesByUserId();
     }
 }

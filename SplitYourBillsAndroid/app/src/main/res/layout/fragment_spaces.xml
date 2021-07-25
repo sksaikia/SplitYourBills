@@ -3,14 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="#050507"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".ui.main.spaces.SpacesFragment">
+    android:id="@+id/linear_layout">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="#050507"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/listitem_space_home"
+        android:id="@+id/recycler_view">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 
 </LinearLayout>

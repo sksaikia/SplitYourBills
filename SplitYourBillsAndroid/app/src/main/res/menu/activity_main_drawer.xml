@@ -6,17 +6,21 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_space"
-
-            android:title="Home" />
+            android:enabled="true"
+            android:icon="@drawable/ic_space"
+            android:title="Spaces" />
         <item
             android:id="@+id/nav_friends"
-
-            android:title="Gallery" />
+            android:enabled="true"
+            android:icon="@drawable/ic_people"
+            android:title="Friends" />
         <item
             android:id="@+id/nav_notifications"
-            android:title="SlideShow" />
+            android:icon="@drawable/ic_notifications"
+            android:title="Notifications" />
         <item
             android:id="@+id/nav_profile"
-            android:title="SlideShow" />
+            android:icon="@drawable/ic_person"
+            android:title="Profile" />
     </group>
 </menu>

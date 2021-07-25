@@ -1,6 +1,7 @@
 package com.example.splityourbillsandroid.ui.auth;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -8,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.splityourbillsandroid.base.BaseViewModel;
 import com.example.splityourbillsandroid.data.AppDataManager;
 import com.example.splityourbillsandroid.data.models.DefaultResponse;
+import com.example.splityourbillsandroid.data.models.authentication.JWTResponse;
 import com.example.splityourbillsandroid.data.models.authentication.LoginBody;
 import com.example.splityourbillsandroid.data.models.authentication.RegisterBody;
 
@@ -63,7 +65,7 @@ public class AuthViewModel extends BaseViewModel {
             @Override
             public void onNext(@NonNull Response<DefaultResponse> defaultResponseResponse) {
                 statusRegister.setValue(defaultResponseResponse.code());
-                if (defaultResponseResponse.code()==200){
+                if (defaultResponseResponse.code()==201){
                     //log in here
                     login(new LoginBody(authBody.getEmail(),authBody.getPassword()));
                 }
@@ -89,17 +91,22 @@ public class AuthViewModel extends BaseViewModel {
         if (statusLogin==null)
             statusLogin = new MutableLiveData<>();
         appDataManager.loginUser(loginBody).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Response<DefaultResponse>>() {
+                .subscribe(new Observer<Response<JWTResponse>>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
                         getCompositeDisposable().add(d);
                     }
 
                     @Override
-                    public void onNext(@NonNull Response<DefaultResponse> defaultResponseResponse) {
+                    public void onNext(@NonNull Response<JWTResponse> defaultResponseResponse) {
                         statusLogin.setValue(defaultResponseResponse.code());
+                        Log.d(TAG, "onNext: response login : " + defaultResponseResponse.body());
+                        Log.d(TAG, "onNext: response login : " + defaultResponseResponse.code());
+                        Log.d(TAG, "onNext: body " + defaultResponseResponse.body().getAccessToken());
+                        Log.d(TAG, "onNext: body " + defaultResponseResponse.body().toString());
+
                         if (defaultResponseResponse.code()==200){
-                            appDataManager.setAccessToken(defaultResponseResponse.body().getMessage());
+                            appDataManager.setAccessToken(defaultResponseResponse.body().getAccessToken());
                         }
                     }
 
