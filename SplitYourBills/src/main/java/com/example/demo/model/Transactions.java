@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
-import com.example.demo.dto.AddTransactionsDTO;
+import com.example.demo.dto.Transactions.AddNewTransactionDTO;
+import com.example.demo.dto.Transactions.AddTransactionsDTO;
 import com.example.demo.model.User.User;
 import com.example.demo.model.audit.DateAudit;
 
@@ -100,6 +101,13 @@ public class Transactions extends DateAudit {
         this.description = description;
     }
     public Transactions(AddTransactionsDTO transactionsDTO){
+        this.setSpaceId(transactionsDTO.getSpaceId());
+        this.setPersonId(transactionsDTO.getPersonId());
+        this.setAmount(transactionsDTO.getAmount());
+        this.setDescription(transactionsDTO.getDescription());
+
+    }
+    public Transactions(AddNewTransactionDTO transactionsDTO){
         this.setSpaceId(transactionsDTO.getSpaceId());
         this.setPersonId(transactionsDTO.getPersonId());
         this.setAmount(transactionsDTO.getAmount());

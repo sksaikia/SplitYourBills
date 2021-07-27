@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.dto.Member;
 
 import com.example.demo.dto.Users.InviteUserDetails;
 import com.example.demo.dto.Users.UserDetails;

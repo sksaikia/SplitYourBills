@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.SpaceMembersDTO;
+import com.example.demo.dto.Member.AddSpaceMemberDTO;
+import com.example.demo.dto.Member.SpaceMembersDTO;
 import com.example.demo.model.Invites;
-import com.example.demo.model.Space;
 import com.example.demo.model.SpaceMembers;
 import com.example.demo.model.User.User;
 import com.example.demo.repository.SpaceMembersRepository;
@@ -91,6 +91,41 @@ public class SpaceMembersService {
     }
 
 
+
+    public int addMemberOrInvite(AddSpaceMemberDTO spaceDTO){
+        Long currUserId = Long.valueOf(0);
+        String phoneNo = spaceDTO.getPhoneNo();
+        if (userRepository.existsByPhoneno(phoneNo)){
+            Optional<User> optionalUser = userRepository.findByPhoneno(phoneNo);
+            if (optionalUser.isPresent()){
+                currUserId = optionalUser.get().getId();
+                //As the phone no is present in the users table, add it in the SpaceMembers table
+                SpaceMembers spaceMembers = new SpaceMembers(spaceDTO.getSpaceId(),currUserId,phoneNo);
+                spaceMembersRepository.save(spaceMembers);
+                return 1;
+            }else{
+                //TODO need to throw some error
+            }
+        }else{
+            //Create a new entry in the invitations table with phone no and space_id
+            //replace the currUserId value
+            Long spaceId = spaceDTO.getSpaceId();
+            Invites newInvite = new Invites(spaceId,phoneNo);
+            invitesService.addInvite(newInvite);
+
+            long inviteId =  invitesService.getInviteByPhoneNoAndSpaceId(spaceId,phoneNo);
+
+            SpaceMembers spaceMembers = new SpaceMembers();
+            spaceMembers.setSpaceMembers(spaceId,inviteId,phoneNo);
+            spaceMembersRepository.save(spaceMembers);
+
+            return 2;
+
+        }
+
+        return -1;
+
+    }
 }
 
 

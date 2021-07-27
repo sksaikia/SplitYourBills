@@ -1,21 +1,15 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.AddTransactionsDTO;
-import com.example.demo.dto.SpaceMembersDTO;
-import com.example.demo.model.Invites;
-import com.example.demo.model.SpaceMembers;
+import com.example.demo.dto.Transactions.AddNewTransactionDTO;
+import com.example.demo.dto.Transactions.AddTransactionsDTO;
 import com.example.demo.model.Transactions;
-import com.example.demo.model.User.User;
-import com.example.demo.repository.SpaceMembersRepository;
 import com.example.demo.repository.TransactionsRepository;
-import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -60,6 +54,17 @@ public class TransactionsService {
 
         return transactionsDTOS;
     }
+
+    public void addTransaction(AddNewTransactionDTO transactionsDTO){
+        Transactions transactions = getNewTransactionFromDTO(transactionsDTO);
+        transactionsRepository.save(transactions);
+    }
+
+    private Transactions getNewTransactionFromDTO(AddNewTransactionDTO transactionsDTO) {
+        Transactions transactions = new Transactions(transactionsDTO);
+        return transactions;
+    }
+
 
 
 }

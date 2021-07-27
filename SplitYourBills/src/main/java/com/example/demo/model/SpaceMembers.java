@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-import com.example.demo.dto.SpaceMembersDTO;
+import com.example.demo.dto.Member.SpaceMembersDTO;
 import com.example.demo.model.User.User;
 import com.example.demo.model.audit.DateAudit;
 

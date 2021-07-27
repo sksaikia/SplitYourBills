@@ -1,13 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.SpaceMembersDTO;
-import com.example.demo.model.Invites;
-import com.example.demo.model.Space;
-import com.example.demo.model.SpaceMembers;
+import com.example.demo.dto.Member.AddSpaceMemberDTO;
+import com.example.demo.dto.Member.SpaceMembersDTO;
 import com.example.demo.payload.ApiResponse;
-import com.example.demo.security.CurrentUser;
-import com.example.demo.security.UserPrincipal;
-import com.example.demo.service.InvitesService;
 import com.example.demo.service.SpaceMembersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/spacemember")
@@ -36,9 +30,9 @@ public class SpaceMembersController {
 //    }
 
     @PostMapping("/add")
-    public ResponseEntity<ApiResponse> addInviteOrPerson(@RequestBody SpaceMembersDTO spaceMembersDTO){
+    public ResponseEntity<ApiResponse> addInviteOrPerson(@RequestBody AddSpaceMemberDTO addSpaceMemberDTO){
 
-        int state = spaceMembersService.addMemberOrInvite(spaceMembersDTO);
+        int state = spaceMembersService.addMemberOrInvite(addSpaceMemberDTO);
         if (state==1)
             return new ResponseEntity<ApiResponse>(new ApiResponse(true,"Added"),HttpStatus.CREATED);
         else if (state==2)

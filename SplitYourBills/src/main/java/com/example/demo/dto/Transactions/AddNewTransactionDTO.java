@@ -1,29 +1,11 @@
-package com.example.demo.dto;
+package com.example.demo.dto.Transactions;
 
 import com.example.demo.dto.Users.UserDetails;
-import com.example.demo.model.SpaceMembers;
 import com.example.demo.model.Transactions;
 
-public class AddTransactionsDTO {
-    private long transactionId,spaceId,personId,amount;
+public class AddNewTransactionDTO {
+    private long spaceId,personId,amount;
     private String description;
-    private UserDetails userDetails;
-
-    public UserDetails getUserDetails() {
-        return userDetails;
-    }
-
-    public void setUserDetails(UserDetails userDetails) {
-        this.userDetails = userDetails;
-    }
-
-    public long getTransactionId() {
-        return transactionId;
-    }
-
-    public void setTransactionId(long transactionId) {
-        this.transactionId = transactionId;
-    }
 
     public long getSpaceId() {
         return spaceId;
@@ -57,17 +39,20 @@ public class AddTransactionsDTO {
         this.description = description;
     }
 
-    public AddTransactionsDTO() {
+    public AddNewTransactionDTO() {
     }
 
-    public AddTransactionsDTO(Transactions transactions){
-        this.setTransactionId(transactions.getTransactionId());
+    public AddNewTransactionDTO(long spaceId, long personId, long amount, String description) {
+        this.spaceId = spaceId;
+        this.personId = personId;
+        this.amount = amount;
+        this.description = description;
+    }
+
+    public AddNewTransactionDTO(Transactions transactions){
         this.setSpaceId(transactions.getSpaceId());
         this.setPersonId(transactions.getPersonId());
         this.setAmount(transactions.getAmount());
         this.setDescription(transactions.getDescription());
-        this.userDetails = new UserDetails(transactions.getUser());
     }
-
-
 }
