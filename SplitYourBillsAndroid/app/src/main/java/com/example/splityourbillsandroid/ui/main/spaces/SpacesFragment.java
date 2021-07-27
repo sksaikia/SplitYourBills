@@ -16,8 +16,8 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.example.splityourbillsandroid.R;
-import com.example.splityourbillsandroid.data.models.spaces.AddNewSpaceResponse;
-import com.example.splityourbillsandroid.data.models.spaces.SpaceResponse;
+import com.example.splityourbillsandroid.data.models.spaces.response.AddNewSpaceResponse;
+import com.example.splityourbillsandroid.data.models.spaces.response.SpaceResponse;
 import com.example.splityourbillsandroid.ui.main.MainViewModel;
 import com.example.splityourbillsandroid.ui.main.createSpace.CreateSpaceFragment;
 import com.example.splityourbillsandroid.ui.main.spaceDetails.SpaceDetailsFragment;

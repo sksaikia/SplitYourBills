@@ -9,11 +9,12 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.splityourbillsandroid.base.BaseViewModel;
 import com.example.splityourbillsandroid.data.AppDataManager;
 import com.example.splityourbillsandroid.data.models.DefaultResponse;
-import com.example.splityourbillsandroid.data.models.spaces.SpaceBody;
-import com.example.splityourbillsandroid.data.models.spaces.AddNewSpaceResponse;
-import com.example.splityourbillsandroid.data.models.spaces.SpaceMembersResponse;
-import com.example.splityourbillsandroid.data.models.spaces.SpaceResponse;
-import com.example.splityourbillsandroid.data.models.spaces.TransactionsResponse;
+import com.example.splityourbillsandroid.data.models.spaces.body.SpaceBody;
+import com.example.splityourbillsandroid.data.models.spaces.body.SpaceMembersBody;
+import com.example.splityourbillsandroid.data.models.spaces.response.AddNewSpaceResponse;
+import com.example.splityourbillsandroid.data.models.spaces.response.SpaceMembersResponse;
+import com.example.splityourbillsandroid.data.models.spaces.response.SpaceResponse;
+import com.example.splityourbillsandroid.data.models.transactions.TransactionsResponse;
 
 import java.util.List;
 
@@ -49,6 +50,7 @@ public class MainViewModel extends BaseViewModel {
     private MutableLiveData<Integer> transactionResponseStatus;
     private MutableLiveData<Integer> createSpaceStatus;
     private MutableLiveData<Integer> spaceMembersStatus;
+    private MutableLiveData<Integer> addSpaceMembersStatus;
 
 
     public LiveData<Integer> getStatusSpaceResponse(){
@@ -90,6 +92,11 @@ public class MainViewModel extends BaseViewModel {
         if (spaceMembers==null)
             spaceMembers = new MutableLiveData<>();
         return spaceMembers;
+    }
+    public LiveData<Integer> addSpaceMembersStatus(){
+        if (addSpaceMembersStatus==null)
+            addSpaceMembersStatus = new MutableLiveData<>();
+        return addSpaceMembersStatus;
     }
 
 
@@ -245,5 +252,34 @@ public class MainViewModel extends BaseViewModel {
         });
     }
 
+    public void addNewMemberInSpace(SpaceMembersBody spaceMembersBody){
+        if (addSpaceMembersStatus==null)
+            addSpaceMembersStatus = new MutableLiveData<>();
+        appDataManager.addMemberToSpaceOrInvite(spaceMembersBody).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<Response<DefaultResponse>>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+                getCompositeDisposable().add(d);
+            }
 
+            @Override
+            public void onNext(@NonNull Response<DefaultResponse> defaultResponseResponse) {
+                addSpaceMembersStatus.setValue(defaultResponseResponse.code());
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                addSpaceMembersStatus.setValue(500);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+    public void resetSpaceMembersStatus() {
+        addSpaceMembersStatus = new MutableLiveData<>();
+    }
 }

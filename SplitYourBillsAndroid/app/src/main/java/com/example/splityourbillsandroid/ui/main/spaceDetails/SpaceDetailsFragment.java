@@ -16,11 +16,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.splityourbillsandroid.R;
-import com.example.splityourbillsandroid.data.models.spaces.AddNewSpaceResponse;
-import com.example.splityourbillsandroid.data.models.spaces.TransactionsResponse;
+import com.example.splityourbillsandroid.data.models.transactions.TransactionsResponse;
 import com.example.splityourbillsandroid.ui.main.AddPeopleForSpace.AddPeopleFragment;
 import com.example.splityourbillsandroid.ui.main.MainViewModel;
 import com.example.splityourbillsandroid.ui.main.SpaceMembers.SpaceMembersFragment;
+import com.example.splityourbillsandroid.ui.main.newTransaction.NewTransactionFragment;
 import com.example.splityourbillsandroid.utils.Constants;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -48,7 +48,10 @@ public class SpaceDetailsFragment extends Fragment {
     @Inject
     SpaceMembersFragment spaceMembersFragment;
 
-    MaterialButton addNewPeopleBTN,viewMembersBTN;
+    @Inject
+    NewTransactionFragment newTransactionFragment;
+
+    MaterialButton addNewPeopleBTN,viewMembersBTN,newTransactionBTN;
 
 
     List<TransactionsResponse> mList;
@@ -147,8 +150,12 @@ public class SpaceDetailsFragment extends Fragment {
                 initializeFragments(spaceMembersFragment);
             }
         });
-
-
+        newTransactionBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initializeFragments(newTransactionFragment);
+            }
+        });
 
 
 
@@ -161,6 +168,7 @@ public class SpaceDetailsFragment extends Fragment {
         linearLayout = view.findViewById(R.id.linear_layout);
         addNewPeopleBTN = view.findViewById(R.id.btn_add_members);
         viewMembersBTN = view.findViewById(R.id.btn_view_members);
+        newTransactionBTN = view.findViewById(R.id.btn_add_transaction);
 
     }
 

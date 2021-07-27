@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 
 import android.provider.ContactsContract;
@@ -20,11 +21,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.splityourbillsandroid.R;
-import com.example.splityourbillsandroid.data.models.spaces.AddNewSpaceResponse;
+import com.example.splityourbillsandroid.data.models.spaces.body.SpaceMembersBody;
+import com.example.splityourbillsandroid.data.models.spaces.response.AddNewSpaceResponse;
 import com.example.splityourbillsandroid.ui.main.MainViewModel;
+import com.example.splityourbillsandroid.ui.main.SpaceMembers.SpaceMembersFragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.snackbar.Snackbar;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -50,9 +54,13 @@ public class AddPeopleFragment extends Fragment {
     private static final String TAG = "AddPeopleFragment";
 
     List<Contacts> contactList;
+    LinearLayout parentLayout;
 
     long spaceId = 0;
     String spaceName = "";
+
+    @Inject
+    SpaceMembersFragment spaceMembersFragment;
 
     @Inject
     MainViewModel viewModel;
@@ -95,16 +103,32 @@ public class AddPeopleFragment extends Fragment {
             }
         });
 
-
+        subscribeObserver();
 
         return view;
     }
 
-    private void addMembers() {
-        for (Contacts c:contactList){
-            System.out.println(c.toString());
+    private void subscribeObserver() {
+        viewModel.addSpaceMembersStatus().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                if (integer==201){
+                    showToast("Added the members");
+                    initializeFragments(spaceMembersFragment);
+                    viewModel.resetSpaceMembersStatus();
+                }
+            }
+        });
+    }
 
-        }
+    private void addMembers() {
+//        for (Contacts c:contactList){
+//            System.out.println(c.toString());
+//            String phoneNo = c.getPhone();
+//            SpaceMembersBody spaceMembersBody = new SpaceMembersBody(phoneNo,spaceId);
+//            //TODO handle it more efficiently
+//            viewModel.addNewMemberInSpace(spaceMembersBody);
+//        }
 
     }
 
@@ -124,6 +148,7 @@ public class AddPeopleFragment extends Fragment {
         saveBTN = view.findViewById(R.id.btn_save);
         spaceNameTV = view.findViewById(R.id.tv_space_name);
         chipGroup = view.findViewById(R.id.chip_group);
+        parentLayout = view.findViewById(R.id.parent_layout);
     }
 
     @Override
@@ -205,10 +230,27 @@ public class AddPeopleFragment extends Fragment {
                         }
 
                         Log.d(TAG, "onActivityResult: " +  name);
+                        SpaceMembersBody spaceMembersBody = new SpaceMembersBody(phoneNo,spaceId);
+                        //TODO handle it more efficiently
+                        viewModel.addNewMemberInSpace(spaceMembersBody);
                     }
                 }
                 break;
         }
+    }
+    private void showToast(String msg) {
+        Snackbar snackbar = Snackbar.make(parentLayout, msg, Snackbar.LENGTH_INDEFINITE).
+                setDuration(2000);
+        snackbar.show();
+    }
+    private void initializeFragments(Fragment frag) {
+        String backStateName = frag.getClass().toString();
+        //Log.d(TAG, "onBtnOtpLoginClicked: " + backStateName);
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        //   transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
+        transaction.replace(R.id.frame_layout_main, frag);
+        transaction.addToBackStack(backStateName);
+        transaction.commit();
     }
 
 

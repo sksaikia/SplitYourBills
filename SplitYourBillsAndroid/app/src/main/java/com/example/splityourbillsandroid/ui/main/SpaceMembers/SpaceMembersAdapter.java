@@ -9,8 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splityourbillsandroid.R;
-import com.example.splityourbillsandroid.data.models.spaces.SpaceMembersResponse;
-import com.example.splityourbillsandroid.data.models.spaces.TransactionsResponse;
+import com.example.splityourbillsandroid.data.models.spaces.response.SpaceMembersResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +39,21 @@ public class SpaceMembersAdapter extends RecyclerView.Adapter<SpaceMembersAdapte
     @NonNull
     @Override
     public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem_transactions, parent, false);
-        return new viewholder(view);
+        if (viewType==0) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem_transactions, parent, false);
+            return new viewholder(view);
+        }else{
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem_empty, parent, false);
+            return new viewholder(view);
+        }
+
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (mList.get(position).getUserId()!=-1)
+            return 0;
+        return 1;
     }
 
     @Override
@@ -52,22 +64,22 @@ public class SpaceMembersAdapter extends RecyclerView.Adapter<SpaceMembersAdapte
 //        holder.name.setText(str);
 //        holder.description.setText(mList.get(position).getDescription());
 //
-        if (mList.get(position).getUserId()!=-1) {
-            holder.name.setText(mList.get(position).getUserDetails().getUserName());
-            holder.description.setText(mList.get(position).getUserDetails().getUserPhone());
-        }
+            if (mList.get(position).getUserId()!=-1) {
+                holder.name.setText(mList.get(position).getUserDetails().getUserName());
+                holder.description.setText(mList.get(position).getUserDetails().getUserPhone());}
     }
 
     @Override
     public int getItemCount() {
 
-        int size  = 0 ;
-        for (SpaceMembersResponse s : mList){
-            if (s.getUserId()!=-1)
-                size++;
-        }
-        invites = mList.size()-size;
-        return size;
+//        int size  = 0 ;
+//        for (SpaceMembersResponse s : mList){
+//            if (s.getUserId()!=-1)
+//                size++;
+//        }
+//        invites = mList.size()-size;
+//        return size;
+        return mList.size();
     }
 
     public int getInviteCount(){

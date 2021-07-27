@@ -9,9 +9,9 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.splityourbillsandroid.base.BaseViewModel;
 import com.example.splityourbillsandroid.data.AppDataManager;
 import com.example.splityourbillsandroid.data.models.DefaultResponse;
-import com.example.splityourbillsandroid.data.models.authentication.JWTResponse;
-import com.example.splityourbillsandroid.data.models.authentication.LoginBody;
-import com.example.splityourbillsandroid.data.models.authentication.RegisterBody;
+import com.example.splityourbillsandroid.data.models.authentication.response.JWTResponse;
+import com.example.splityourbillsandroid.data.models.authentication.body.LoginBody;
+import com.example.splityourbillsandroid.data.models.authentication.body.RegisterBody;
 
 import javax.inject.Inject;
 

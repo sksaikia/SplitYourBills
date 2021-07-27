@@ -17,10 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.splityourbillsandroid.R;
-import com.example.splityourbillsandroid.data.models.spaces.AddNewSpaceResponse;
-import com.example.splityourbillsandroid.data.models.spaces.SpaceMembersResponse;
+import com.example.splityourbillsandroid.data.models.spaces.response.AddNewSpaceResponse;
+import com.example.splityourbillsandroid.data.models.spaces.response.SpaceMembersResponse;
 import com.example.splityourbillsandroid.ui.main.MainViewModel;
-import com.example.splityourbillsandroid.ui.main.spaceDetails.TransactionsAdapter;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;

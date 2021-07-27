@@ -6,6 +6,7 @@ import com.example.splityourbillsandroid.ui.main.AddPeopleForSpace.AddPeopleFrag
 import com.example.splityourbillsandroid.ui.main.SpaceMembers.SpaceMembersFragment;
 import com.example.splityourbillsandroid.ui.main.createSpace.CreateSpaceFragment;
 import com.example.splityourbillsandroid.ui.main.friends.FriendsFragment;
+import com.example.splityourbillsandroid.ui.main.newTransaction.NewTransactionFragment;
 import com.example.splityourbillsandroid.ui.main.notifications.NotificationsFragment;
 import com.example.splityourbillsandroid.ui.main.profile.ProfileFragment;
 import com.example.splityourbillsandroid.ui.main.spaceDetails.SpaceDetailsFragment;
@@ -34,5 +35,7 @@ public abstract class MainActivityFragmentModule {
     abstract AddPeopleFragment bindAddPeopleFragment();
     @ContributesAndroidInjector
     abstract SpaceMembersFragment bindSpaceMembersFragment();
+    @ContributesAndroidInjector
+    abstract NewTransactionFragment bindNewTransactionFragment();
 
 }

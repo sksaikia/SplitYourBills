@@ -1,4 +1,4 @@
-package com.example.splityourbillsandroid.data.models.authentication;
+package com.example.splityourbillsandroid.data.models.authentication.response;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -52,7 +52,32 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_add_transaction"
+            style="@style/ButtonStyle"
+            android:layout_gravity="center"
+            android:textSize="15dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:layout_marginRight="@dimen/margin_right"
+            android:fontFamily="@font/roboto"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/input_layout2"
+            android:text="Add New Transaction"
+            app:rippleColor="@color/md_pink_100"
+            app:backgroundTint="#C44BC1"
+            />
+
+
+    </LinearLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView

@@ -1,6 +1,6 @@
-package com.example.splityourbillsandroid.data.models.spaces;
+package com.example.splityourbillsandroid.data.models.transactions;
 
-import com.example.splityourbillsandroid.data.models.authentication.UserResponse;
+import com.example.splityourbillsandroid.data.models.authentication.response.UserResponse;
 import com.google.gson.annotations.SerializedName;
 
 public class TransactionsResponse {

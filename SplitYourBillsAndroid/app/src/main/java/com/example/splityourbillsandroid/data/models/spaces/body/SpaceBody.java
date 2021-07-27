@@ -1,4 +1,4 @@
-package com.example.splityourbillsandroid.data.models.spaces;
+package com.example.splityourbillsandroid.data.models.spaces.body;
 
 import com.google.gson.annotations.SerializedName;
 

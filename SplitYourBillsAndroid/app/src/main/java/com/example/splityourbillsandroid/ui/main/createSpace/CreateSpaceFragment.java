@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.splityourbillsandroid.R;
-import com.example.splityourbillsandroid.data.models.spaces.SpaceBody;
+import com.example.splityourbillsandroid.data.models.spaces.body.SpaceBody;
 import com.example.splityourbillsandroid.ui.main.AddPeopleForSpace.AddPeopleFragment;
 import com.example.splityourbillsandroid.ui.main.MainViewModel;
 import com.google.android.material.button.MaterialButton;

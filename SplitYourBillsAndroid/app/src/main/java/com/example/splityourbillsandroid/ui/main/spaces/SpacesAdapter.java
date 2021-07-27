@@ -9,8 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splityourbillsandroid.R;
-import com.example.splityourbillsandroid.data.models.spaces.AddNewSpaceResponse;
-import com.example.splityourbillsandroid.data.models.spaces.SpaceResponse;
+import com.example.splityourbillsandroid.data.models.spaces.response.SpaceResponse;
 
 import java.util.ArrayList;
 import java.util.List;

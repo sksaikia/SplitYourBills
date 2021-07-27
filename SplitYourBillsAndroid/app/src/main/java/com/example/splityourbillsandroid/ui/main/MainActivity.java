@@ -17,6 +17,8 @@ import android.view.MenuItem;
 
 import com.example.splityourbillsandroid.R;
 import com.example.splityourbillsandroid.ui.main.friends.FriendsFragment;
+import com.example.splityourbillsandroid.ui.main.notifications.NotificationsFragment;
+import com.example.splityourbillsandroid.ui.main.profile.ProfileFragment;
 import com.example.splityourbillsandroid.ui.main.spaces.SpacesFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -46,6 +48,12 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
     @Inject
     FriendsFragment friendsFragment;
 
+    @Inject
+    NotificationsFragment notificationsFragment;
+
+    @Inject
+    ProfileFragment profileFragment;
+
     private static final String TAG = "MainActivity";
 
     @Override
@@ -73,15 +81,16 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.nav_space:
+                    initFrag(spacesFragment);
                     return true;
                 case R.id.nav_friends:
-
+                    initFrag(friendsFragment);
                     return true;
                 case R.id.nav_notifications:
-
+                    initFrag(notificationsFragment);
                     return true;
                 case R.id.nav_profile:
-
+                    initFrag(profileFragment);
                     return true;
             }
             return false;

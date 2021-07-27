@@ -2,14 +2,15 @@ package com.example.splityourbillsandroid.data.retrofit;
 
 
 import com.example.splityourbillsandroid.data.models.DefaultResponse;
-import com.example.splityourbillsandroid.data.models.authentication.JWTResponse;
-import com.example.splityourbillsandroid.data.models.authentication.LoginBody;
-import com.example.splityourbillsandroid.data.models.authentication.RegisterBody;
-import com.example.splityourbillsandroid.data.models.spaces.SpaceBody;
-import com.example.splityourbillsandroid.data.models.spaces.AddNewSpaceResponse;
-import com.example.splityourbillsandroid.data.models.spaces.SpaceMembersResponse;
-import com.example.splityourbillsandroid.data.models.spaces.SpaceResponse;
-import com.example.splityourbillsandroid.data.models.spaces.TransactionsResponse;
+import com.example.splityourbillsandroid.data.models.authentication.response.JWTResponse;
+import com.example.splityourbillsandroid.data.models.authentication.body.LoginBody;
+import com.example.splityourbillsandroid.data.models.authentication.body.RegisterBody;
+import com.example.splityourbillsandroid.data.models.spaces.body.SpaceBody;
+import com.example.splityourbillsandroid.data.models.spaces.body.SpaceMembersBody;
+import com.example.splityourbillsandroid.data.models.spaces.response.AddNewSpaceResponse;
+import com.example.splityourbillsandroid.data.models.spaces.response.SpaceMembersResponse;
+import com.example.splityourbillsandroid.data.models.spaces.response.SpaceResponse;
+import com.example.splityourbillsandroid.data.models.transactions.TransactionsResponse;
 
 import java.util.List;
 
@@ -47,5 +48,6 @@ public interface APIInterface {
     @GET("api/spacemember/{spaceId}")
     Observable<Response<List<SpaceMembersResponse>>> getMembersBySpaceId(@Path("spaceId") long spaceId);
 
-
+    @POST("api/spacemember/add")
+    Observable<Response<DefaultResponse>> addMemberToSpaceOrInvite(@Body SpaceMembersBody spaceMembersBody);
 }

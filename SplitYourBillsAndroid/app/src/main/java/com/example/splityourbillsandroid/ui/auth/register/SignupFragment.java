@@ -16,7 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.splityourbillsandroid.R;
-import com.example.splityourbillsandroid.data.models.authentication.RegisterBody;
+import com.example.splityourbillsandroid.data.models.authentication.body.RegisterBody;
 import com.example.splityourbillsandroid.ui.auth.AuthViewModel;
 import com.example.splityourbillsandroid.ui.main.MainActivity;
 import com.google.android.material.button.MaterialButton;

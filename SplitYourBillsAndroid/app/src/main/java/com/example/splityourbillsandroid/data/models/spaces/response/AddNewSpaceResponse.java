@@ -1,4 +1,4 @@
-package com.example.splityourbillsandroid.data.models.spaces;
+package com.example.splityourbillsandroid.data.models.spaces.response;
 
 public class AddNewSpaceResponse {
     private Boolean success;

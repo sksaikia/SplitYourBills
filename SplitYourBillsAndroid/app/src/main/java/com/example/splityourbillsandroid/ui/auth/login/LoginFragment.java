@@ -17,7 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.splityourbillsandroid.R;
-import com.example.splityourbillsandroid.data.models.authentication.LoginBody;
+import com.example.splityourbillsandroid.data.models.authentication.body.LoginBody;
 import com.example.splityourbillsandroid.ui.auth.AuthViewModel;
 import com.example.splityourbillsandroid.ui.auth.register.SignupFragment;
 import com.example.splityourbillsandroid.ui.main.MainActivity;

@@ -54,6 +54,7 @@
         app:labelVisibilityMode="labeled"
         app:itemIconTint="#FFFFFF"
         app:itemTextColor="#FFFFFF"
+        app:itemRippleColor="#FFFFFF"
         android:background="#050507"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
