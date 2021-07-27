@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.Spaces.AddNewSpaceDTO;
 import com.example.demo.dto.Spaces.SpaceDTO;
 import com.example.demo.payload.ApiResponse;
+import com.example.demo.payload.SpaceResponse;
 import com.example.demo.security.CurrentUser;
 import com.example.demo.security.UserPrincipal;
 import com.example.demo.service.SpaceService;
@@ -23,10 +24,12 @@ public class SpaceController {
     private UserController userController;
 
     @PostMapping("/add")
-    public ResponseEntity<ApiResponse> addASpace(@RequestBody AddNewSpaceDTO space, @CurrentUser UserPrincipal currentUser){
+    public ResponseEntity<SpaceResponse> addASpace(@RequestBody AddNewSpaceDTO space, @CurrentUser UserPrincipal currentUser){
         long userId = userController.getCurrentUserId(currentUser);
-        spaceService.addSpace(space,userId);
-        return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Created a new space for person id : " + userId), HttpStatus.CREATED);
+        SpaceResponse spaceResponse = spaceService.addSpace(space,userId);
+        spaceResponse.setMessage("Created a new space id : " + spaceResponse.getSpaceId());
+        spaceResponse.setSuccess(true);
+        return new ResponseEntity<SpaceResponse>(spaceResponse, HttpStatus.CREATED);
 
     }
     @GetMapping("/")

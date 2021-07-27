@@ -28,13 +28,6 @@ public class SpaceMembersService {
     @Autowired
     private UserRepository userRepository;
 
-    public SpaceMembersService() {
-    }
-
-    public SpaceMembersService(SpaceMembersRepository spaceMembersRepository) {
-        this.spaceMembersRepository = spaceMembersRepository;
-    }
-
 //Search for the phone no in  the users table. If it is found , then invite_id is null and retrieve
     //the person id and place it here.
     public int addMemberOrInvite(SpaceMembersDTO spaceDTO){

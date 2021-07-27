@@ -5,6 +5,7 @@ import com.example.demo.dto.Spaces.SpaceDTO;
 import com.example.demo.model.Space;
 import com.example.demo.model.SpaceMembers;
 import com.example.demo.model.User.User;
+import com.example.demo.payload.SpaceResponse;
 import com.example.demo.repository.SpaceMembersRepository;
 import com.example.demo.repository.SpaceRepository;
 import com.example.demo.repository.UserRepository;
@@ -32,11 +33,14 @@ public class SpaceService {
     public SpaceService() {
     }
 
-    public void addSpace(AddNewSpaceDTO spaceDTO,long userId){
+    public SpaceResponse addSpace(AddNewSpaceDTO spaceDTO, long userId){
         Space space = getSpaceFromDTO(spaceDTO,userId);
         spaceRepository.save(space);
         long id =  space.getSpaceId();
+        String name = space.getSpaceName();
+        SpaceResponse spaceResponse = new SpaceResponse(id,name);
         addPersonToMembers(spaceDTO,userId,id);
+        return spaceResponse;
 
     }
     public void addPersonToMembers(AddNewSpaceDTO spaceDTO, long userId,long spaceId){
