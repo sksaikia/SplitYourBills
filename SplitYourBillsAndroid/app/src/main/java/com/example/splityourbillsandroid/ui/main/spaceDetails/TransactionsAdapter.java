@@ -1,4 +1,4 @@
-package com.example.splityourbillsandroid.ui.main.spaces;
+package com.example.splityourbillsandroid.ui.main.spaceDetails;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,25 +9,24 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splityourbillsandroid.R;
-import com.example.splityourbillsandroid.data.models.spaces.AddNewSpaceResponse;
-import com.example.splityourbillsandroid.data.models.spaces.SpaceResponse;
+import com.example.splityourbillsandroid.data.models.spaces.TransactionsResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class SpacesAdapter extends RecyclerView.Adapter<SpacesAdapter.viewholder> {
+public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapter.viewholder> {
 
 
-    private ArrayList<SpaceResponse> mList;
+    private ArrayList<TransactionsResponse> mList;
     private View.OnClickListener onItemClickListener;
 
     private static final String TAG = "HomeAdapter";
 
 
     @Inject
-    public SpacesAdapter() {
+    public TransactionsAdapter() {
         mList = new ArrayList<>();
     }
 
@@ -39,7 +38,7 @@ public class SpacesAdapter extends RecyclerView.Adapter<SpacesAdapter.viewholder
     @NonNull
     @Override
     public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem_space_home, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem_transactions, parent, false);
         return new viewholder(view);
     }
 
@@ -47,7 +46,9 @@ public class SpacesAdapter extends RecyclerView.Adapter<SpacesAdapter.viewholder
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
 
 
-        holder.name.setText(mList.get(position).getSpaceName());
+        String str = mList.get(position).getUserDetails().getUserName() + " paid " + mList.get(position).getAmount().toString();
+        holder.name.setText(str);
+        holder.description.setText(mList.get(position).getDescription());
 
 
 
@@ -59,7 +60,7 @@ public class SpacesAdapter extends RecyclerView.Adapter<SpacesAdapter.viewholder
             return mList.size();
     }
 
-    public void updateListData(List<SpaceResponse> data) {
+    public void updateListData(List<TransactionsResponse> data) {
         mList.clear();
         this.mList.addAll(data);
         notifyDataSetChanged();
@@ -68,7 +69,7 @@ public class SpacesAdapter extends RecyclerView.Adapter<SpacesAdapter.viewholder
 
     public class viewholder extends RecyclerView.ViewHolder {
 
-        TextView name;
+        TextView name,description;
 
         public viewholder(@NonNull View itemView) {
 
@@ -76,7 +77,8 @@ public class SpacesAdapter extends RecyclerView.Adapter<SpacesAdapter.viewholder
 
             itemView.setTag(this);
 
-            name = itemView.findViewById(R.id.space_name);
+            name = itemView.findViewById(R.id.transaction_name);
+            description = itemView.findViewById(R.id.transaction_description);
 
             itemView.setOnClickListener(onItemClickListener);
 

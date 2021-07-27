@@ -13,13 +13,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.splityourbillsandroid.R;
+import com.example.splityourbillsandroid.data.models.spaces.AddNewSpaceResponse;
 import com.example.splityourbillsandroid.data.models.spaces.SpaceResponse;
 import com.example.splityourbillsandroid.ui.main.MainViewModel;
+import com.example.splityourbillsandroid.ui.main.createSpace.CreateSpaceFragment;
 import com.example.splityourbillsandroid.ui.main.spaceDetails.SpaceDetailsFragment;
 import com.example.splityourbillsandroid.utils.Constants;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -44,11 +47,15 @@ public class SpacesFragment extends Fragment {
     @Inject
     SpaceDetailsFragment spaceDetailsFragment;
 
+    @Inject
+    CreateSpaceFragment createSpaceFragment;
+
 
     List<SpaceResponse> mList;
 
     RecyclerView recyclerView;
-    LinearLayout linearLayout;
+    RelativeLayout linearLayout;
+    FloatingActionButton fabNewSpace;
 
 
 
@@ -72,6 +79,11 @@ public class SpacesFragment extends Fragment {
             spaceDetailsFragment.setArguments(bundle);
 
             initializeFragments(spaceDetailsFragment);
+
+            String spaceIdTemp =  mList.get(position).getSpaceId();
+            String spaceName = mList.get(position).getSpaceName();
+            AddNewSpaceResponse response = new AddNewSpaceResponse(Long.valueOf(spaceIdTemp),spaceName);
+            viewModel.setSpaceDetails(response);
 
 
         }
@@ -113,6 +125,7 @@ public class SpacesFragment extends Fragment {
         AndroidSupportInjection.inject(this);
         recyclerView = view.findViewById(R.id.recycler_view);
         linearLayout = view.findViewById(R.id.linear_layout);
+        fabNewSpace = view.findViewById(R.id.fab);
 
 
         mList = new ArrayList<>();
@@ -127,7 +140,12 @@ public class SpacesFragment extends Fragment {
         subscribeForSpacesStatus();
         subscribeForSpacesData();
 
-
+        fabNewSpace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initializeFragments(createSpaceFragment);
+            }
+        });
 
 
 
@@ -136,12 +154,13 @@ public class SpacesFragment extends Fragment {
         return view;
     }
 
+
     private void subscribeForSpacesData() {
         viewModel.getSpaceResponse().observe(this, new Observer<List<SpaceResponse>>() {
             @Override
-            public void onChanged(List<SpaceResponse> spaceResponses) {
+            public void onChanged(List<SpaceResponse> addNewSpaceRespons) {
 
-                mList = spaceResponses;
+                mList = addNewSpaceRespons;
                 Log.d(TAG, "onChanged: " + mList.size());
                 adapter.updateListData(mList);
 

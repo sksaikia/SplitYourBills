@@ -7,7 +7,11 @@ import com.example.splityourbillsandroid.data.models.DefaultResponse;
 import com.example.splityourbillsandroid.data.models.authentication.JWTResponse;
 import com.example.splityourbillsandroid.data.models.authentication.LoginBody;
 import com.example.splityourbillsandroid.data.models.authentication.RegisterBody;
+import com.example.splityourbillsandroid.data.models.spaces.SpaceBody;
+import com.example.splityourbillsandroid.data.models.spaces.AddNewSpaceResponse;
+import com.example.splityourbillsandroid.data.models.spaces.SpaceMembersResponse;
 import com.example.splityourbillsandroid.data.models.spaces.SpaceResponse;
+import com.example.splityourbillsandroid.data.models.spaces.TransactionsResponse;
 import com.example.splityourbillsandroid.data.prefs.AppPreferencesHelper;
 import com.example.splityourbillsandroid.data.retrofit.AppApiHelper;
 import com.example.splityourbillsandroid.di.scopes.ApplicationContext;
@@ -62,4 +66,20 @@ public class AppDataManager implements AppDataManagerHelper{
     public Observable<Response<List<SpaceResponse>>> getSpacesByUserId() {
         return apiHelper.getSpacesByUserId();
     }
+
+    @Override
+    public Observable<Response<List<TransactionsResponse>>> getTransactionsBySpaceId(long spaceId) {
+        return apiHelper.getTransactionsBySpaceId(spaceId);
+    }
+
+    @Override
+    public Observable<Response<AddNewSpaceResponse>> addNewSpace(SpaceBody spaceBody) {
+        return apiHelper.addNewSpace(spaceBody);
+    }
+
+    @Override
+    public Observable<Response<List<SpaceMembersResponse>>> getMembersBySpaceId(long spaceId) {
+        return apiHelper.getMembersBySpaceId(spaceId);
+    }
+
 }

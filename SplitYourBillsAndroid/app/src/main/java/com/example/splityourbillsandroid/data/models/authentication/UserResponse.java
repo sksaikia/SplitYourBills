@@ -14,7 +14,7 @@ public class UserResponse {
     private String userEmail;
 
     @SerializedName("phoneNo")
-    private Boolean userPhone;
+    private String userPhone;
 
     public String getUserName() {
         return userName;
@@ -32,11 +32,11 @@ public class UserResponse {
         this.userEmail = userEmail;
     }
 
-    public Boolean getUserPhone() {
+    public String getUserPhone() {
         return userPhone;
     }
 
-    public void setUserPhone(Boolean userPhone) {
+    public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
     }
 

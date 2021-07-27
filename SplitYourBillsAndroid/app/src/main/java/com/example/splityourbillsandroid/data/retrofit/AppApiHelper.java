@@ -6,7 +6,11 @@ import com.example.splityourbillsandroid.data.models.DefaultResponse;
 import com.example.splityourbillsandroid.data.models.authentication.JWTResponse;
 import com.example.splityourbillsandroid.data.models.authentication.LoginBody;
 import com.example.splityourbillsandroid.data.models.authentication.RegisterBody;
+import com.example.splityourbillsandroid.data.models.spaces.SpaceBody;
+import com.example.splityourbillsandroid.data.models.spaces.AddNewSpaceResponse;
+import com.example.splityourbillsandroid.data.models.spaces.SpaceMembersResponse;
 import com.example.splityourbillsandroid.data.models.spaces.SpaceResponse;
+import com.example.splityourbillsandroid.data.models.spaces.TransactionsResponse;
 
 import java.util.List;
 
@@ -40,4 +44,21 @@ public class AppApiHelper implements APIInterface{
     public Observable<Response<List<SpaceResponse>>> getSpacesByUserId() {
         return api.getSpacesByUserId();
     }
+
+    @Override
+    public Observable<Response<List<TransactionsResponse>>> getTransactionsBySpaceId(long spaceId) {
+        return api.getTransactionsBySpaceId(spaceId);
+    }
+
+    @Override
+    public Observable<Response<AddNewSpaceResponse>> addNewSpace(SpaceBody spaceBody) {
+        return api.addNewSpace(spaceBody);
+    }
+
+    @Override
+    public Observable<Response<List<SpaceMembersResponse>>> getMembersBySpaceId(long spaceId) {
+        return api.getMembersBySpaceId(spaceId);
+    }
+
+
 }
