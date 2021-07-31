@@ -6,6 +6,23 @@ import com.example.demo.model.Transactions;
 public class AddNewTransactionDTO {
     private long spaceId,personId,amount;
     private String description;
+    private String phoneNo;
+
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+
+    public AddNewTransactionDTO(long spaceId, long personId, long amount, String description, String phoneNo) {
+        this.spaceId = spaceId;
+        this.personId = personId;
+        this.amount = amount;
+        this.description = description;
+        this.phoneNo = phoneNo;
+    }
 
     public long getSpaceId() {
         return spaceId;

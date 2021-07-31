@@ -5,6 +5,7 @@ import com.example.demo.dto.Member.SpaceMembersDTO;
 import com.example.demo.model.Invites;
 import com.example.demo.model.SpaceMembers;
 import com.example.demo.model.User.User;
+import com.example.demo.repository.InviteRepository;
 import com.example.demo.repository.SpaceMembersRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class SpaceMembersService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private InviteRepository inviteRepository;
 
 //Search for the phone no in  the users table. If it is found , then invite_id is null and retrieve
     //the person id and place it here.
@@ -126,6 +130,35 @@ public class SpaceMembersService {
         return -1;
 
     }
+
+    public void deletePersonInSpace(Long personId,Long spaceId){
+        Optional<SpaceMembers> optionalSpaceMembers =
+                spaceMembersRepository.findBySpaceIdAndPersonId(spaceId,personId);
+
+        if (optionalSpaceMembers.isPresent()){
+            long id = optionalSpaceMembers.get().getId();
+            spaceMembersRepository.deleteById(id);
+        }else{
+            //TODO throw exception
+        }
+
+    }
+
+    public void deleteByInviteID(Long inviteId){
+        Optional<SpaceMembers> optionalSpaceMembers =
+                spaceMembersRepository.findByInviteId(inviteId);
+
+        if (optionalSpaceMembers.isPresent()){
+            long id = optionalSpaceMembers.get().getId();
+            long inv = optionalSpaceMembers.get().getInviteId();
+            spaceMembersRepository.deleteById(id);
+            inviteRepository.deleteById(inv);
+        }else{
+            //TODO throw exception
+        }
+
+    }
+
 }
 
 

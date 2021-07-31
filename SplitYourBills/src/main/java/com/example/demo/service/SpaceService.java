@@ -79,6 +79,21 @@ public class SpaceService {
         return spaceDTO;
     }
 
+    public void editSpace(AddNewSpaceDTO space,long spaceId){
+        Optional<Space> optionalSpace = spaceRepository.findById(spaceId);
+
+        if (optionalSpace.isPresent()){
+
+            Space currentSpace = optionalSpace.get();
+            currentSpace.setSpaceName(space.getSpaceName());
+            currentSpace.setSpaceDescription(space.getSpaceDescription());
+
+            spaceRepository.save(currentSpace);
+        }else{
+            //TODO throw exception
+        }
+
+    }
 
 }
 

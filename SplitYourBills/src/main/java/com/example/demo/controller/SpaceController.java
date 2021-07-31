@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -41,17 +42,14 @@ public class SpaceController {
     }
 
 
-//    @PutMapping("/update/{cartItemId}")
-//    public ResponseEntity<ApiResponse> updateCartItem(@RequestBody @Valid AddToCartDto cartDto,
-//                                                      @RequestParam("token") String token) throws AuthenticationFailException,ProductNotExistException {
-//        authenticationService.authenticate(token);
-//        int userId = authenticationService.getUser(token).getId();
-//
-//        Product product = productService.getProductById(cartDto.getProductId());
-//
-//        cartService.updateCartItem(cartDto,userId,product);
-//        return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Product has been updated"), HttpStatus.OK);
-//    }
+    @PutMapping("/update/{spaceId}")
+    public ResponseEntity<ApiResponse> updateSpace(@RequestBody @Valid AddNewSpaceDTO spaceDTO,
+                                                      @PathVariable("spaceId") long spaceId,@CurrentUser UserPrincipal currentUser){
+        long userId = userController.getCurrentUserId(currentUser);
+        spaceService.editSpace(spaceDTO,spaceId);
+        return new ResponseEntity<ApiResponse>(new ApiResponse(true,"Successfully updated space : " + spaceId), HttpStatus.OK);
+
+    }
 //
 //    @DeleteMapping("/delete/{cartItemId}")
 //    public ResponseEntity<ApiResponse> deleteCartItem(@PathVariable("cartItemId") int itemID,@RequestParam("token") String token) throws AuthenticationFailException, CartItemNotExistException {

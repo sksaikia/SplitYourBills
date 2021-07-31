@@ -20,6 +20,9 @@ public class Transactions extends DateAudit {
     @Column(name="person_id")
     private Long personId;
 
+    @Column(name="invite_id")
+    private Long inviteId;
+
     @Column(name="amount")
     private Long amount;
 
@@ -107,12 +110,29 @@ public class Transactions extends DateAudit {
         this.setDescription(transactionsDTO.getDescription());
 
     }
-    public Transactions(AddNewTransactionDTO transactionsDTO){
+    public Transactions(AddNewTransactionDTO transactionsDTO,long personId){
         this.setSpaceId(transactionsDTO.getSpaceId());
-        this.setPersonId(transactionsDTO.getPersonId());
+        this.setPersonId(personId);
         this.setAmount(transactionsDTO.getAmount());
         this.setDescription(transactionsDTO.getDescription());
-
+        this.setInviteId(Long.valueOf(-1));
     }
+
+    public Long getInviteId() {
+        return inviteId;
+    }
+
+    public void setInviteId(Long inviteId) {
+        this.inviteId = inviteId;
+    }
+
+    public Transactions(AddNewTransactionDTO transactionsDTO, long personId, long inviteId){
+        this.setSpaceId(transactionsDTO.getSpaceId());
+        this.setPersonId(personId);
+        this.setAmount(transactionsDTO.getAmount());
+        this.setDescription(transactionsDTO.getDescription());
+        this.setInviteId(inviteId);
+    }
+
 
 }

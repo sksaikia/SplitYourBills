@@ -14,7 +14,7 @@ public class UserPrincipal implements UserDetails {
 
     private Long id;
     private String name;
-    private String username;
+    private String phoneNo;
     @JsonIgnore
     private String email;
 
@@ -36,7 +36,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return phoneNo;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class UserPrincipal implements UserDetails {
     public UserPrincipal(Long id, String name, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.name = name;
-        this.username = username;
+        this.phoneNo = username;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
@@ -100,8 +100,8 @@ public class UserPrincipal implements UserDetails {
         this.name = name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
     }
 
     public String getEmail() {

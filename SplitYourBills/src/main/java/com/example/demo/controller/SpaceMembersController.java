@@ -48,4 +48,18 @@ public class SpaceMembersController {
         return new ResponseEntity<>(spaceMembers,HttpStatus.OK);
     }
 
+    //TODO create for invite id deletion
+    @DeleteMapping("/{spaceId}/{personId}")
+    public ResponseEntity<ApiResponse> deletePersonBySpaceId(@PathVariable("personId") Long personId,@PathVariable("spaceId") long spaceId){
+        spaceMembersService.deletePersonInSpace(personId,spaceId);
+        return new ResponseEntity<ApiResponse>(new ApiResponse(true,"Successfully deleted"),HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/{inviteId}")
+    public ResponseEntity<ApiResponse> deletePersonBySpaceId(@PathVariable("inviteId") Long inviteId){
+        spaceMembersService.deleteByInviteID(inviteId);
+        return new ResponseEntity<ApiResponse>(new ApiResponse(true,"Successfully deleted"),HttpStatus.OK);
+    }
+
 }
