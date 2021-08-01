@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#050507"
+    android:id="@+id/parent_layout"
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.transactionAmountManual.TransactionAmountFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:background="#050507"
+        android:layout_height="0dp"
+        android:layout_weight="9.5"
+        tools:listitem="@layout/listitem_space_home"
+        android:id="@+id/recycler_view">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_save"
+        style="@style/ButtonStyle"
+        android:layout_gravity="center"
+        android:textSize="15dp"
+        android:layout_width="match_parent"
+        android:layout_weight="0.3"
+        android:layout_marginLeft="@dimen/margin_left"
+        android:layout_marginRight="@dimen/margin_right"
+        android:fontFamily="@font/roboto"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/input_layout2"
+        android:text="Save Transaction"
+        app:rippleColor="@color/md_pink_100"
+        app:backgroundTint="#C44BC1"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/tv_total"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:focusable="true"
+        android:layout_marginRight="20dp"
+        android:layout_weight="0.2"
+        android:gravity="bottom | end"
+        android:fontFamily="@font/roboto"
+        android:text=" Total : 0/1200"
+        android:layout_marginLeft="@dimen/margin_left"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="5dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="visible">
+
+    </TextView>
+
+</LinearLayout>

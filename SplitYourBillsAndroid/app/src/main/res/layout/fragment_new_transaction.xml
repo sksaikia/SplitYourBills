@@ -1,14 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:background="#050507"
     tools:context=".ui.main.newTransaction.NewTransactionFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:id="@+id/relative_layout">
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tv_welcome_text"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20sp"
+        android:focusable="true"
+        android:fontFamily="@font/roboto"
+        android:text="Add New Transaction"
+        android:layout_marginLeft="@dimen/margin_left"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:visibility="visible">
 
-</FrameLayout>
+    </TextView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="Amount"
+            android:fontFamily="@font/roboto"
+            android:textSize="14sp"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:layout_marginRight="@dimen/margin_right"
+            android:textColor="#B8B8B8"
+            android:layout_height="wrap_content">
+
+        </TextView>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="10sp"
+            app:boxStrokeColor="#C44BC1"
+            android:backgroundTint="#C44BC1"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:layout_marginRight="@dimen/margin_right"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_height="50dp"
+            app:boxCornerRadiusBottomEnd="10sp"
+            app:boxCornerRadiusBottomStart="10sp"
+            app:boxCornerRadiusTopEnd="10sp"
+            app:boxCornerRadiusTopStart="10sp"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:textColor="#B8B8B8"
+                android:fontFamily="@font/roboto"
+                android:textSize="15sp"
+                android:inputType="number"
+                android:padding="0dp"
+                android:id="@+id/et_amount"
+                android:layout_height="match_parent">
+
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="20sp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="Description"
+            android:fontFamily="@font/roboto"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:layout_marginRight="@dimen/margin_right"
+            android:textColor="#B8B8B8"
+            android:layout_height="wrap_content">
+
+        </TextView>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="10sp"
+            app:boxStrokeColor="#C44BC1"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:layout_marginRight="@dimen/margin_right"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_height="50dp"
+            app:boxCornerRadiusBottomEnd="10sp"
+            app:boxCornerRadiusBottomStart="10sp"
+            app:boxCornerRadiusTopEnd="10sp"
+            app:boxCornerRadiusTopStart="10sp"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:textColor="#B8B8B8"
+                android:id="@+id/et_description"
+                android:fontFamily="@font/roboto"
+                android:textSize="15sp"
+                android:padding="0dp"
+                android:layout_height="match_parent">
+
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            tools:context="com.example.pager.MainActivity" >
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:id="@+id/checkbox"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFF"
+                android:textSize="18sp"
+                android:text="Split equally" />
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            tools:context="com.example.pager.MainActivity" >
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:id="@+id/checkbox_user"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFF"
+                android:textSize="18sp"
+                android:text="You paid the whole bill" />
+
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFF"
+            android:id="@+id/manual_tv"
+            android:layout_marginLeft="20sp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Manually set the values for transaction" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save"
+            style="@style/ButtonStyle"
+            android:layout_gravity="center"
+            android:textSize="15dp"
+            android:layout_marginTop="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:layout_marginRight="@dimen/margin_right"
+            android:fontFamily="@font/roboto"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/input_layout2"
+            android:text="Save Transaction"
+            app:rippleColor="@color/md_pink_100"
+            app:backgroundTint="#C44BC1"
+            />
+
+
+
+    </LinearLayout>.
+
+
+</LinearLayout>

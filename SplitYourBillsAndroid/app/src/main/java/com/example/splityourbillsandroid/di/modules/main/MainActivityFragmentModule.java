@@ -11,6 +11,7 @@ import com.example.splityourbillsandroid.ui.main.notifications.NotificationsFrag
 import com.example.splityourbillsandroid.ui.main.profile.ProfileFragment;
 import com.example.splityourbillsandroid.ui.main.spaceDetails.SpaceDetailsFragment;
 import com.example.splityourbillsandroid.ui.main.spaces.SpacesFragment;
+import com.example.splityourbillsandroid.ui.main.transactionAmountManual.TransactionAmountFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -37,5 +38,7 @@ public abstract class MainActivityFragmentModule {
     abstract SpaceMembersFragment bindSpaceMembersFragment();
     @ContributesAndroidInjector
     abstract NewTransactionFragment bindNewTransactionFragment();
+    @ContributesAndroidInjector
+    abstract TransactionAmountFragment bindTransactionAmountFragment();
 
 }

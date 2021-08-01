@@ -51,7 +51,19 @@ public class MainViewModel extends BaseViewModel {
     private MutableLiveData<Integer> createSpaceStatus;
     private MutableLiveData<Integer> spaceMembersStatus;
     private MutableLiveData<Integer> addSpaceMembersStatus;
+    private MutableLiveData<Long> transactionAmount;
 
+    public MutableLiveData<Long> getTransactionAmount() {
+        if (transactionAmount==null)
+            transactionAmount = new MutableLiveData<>();
+        return transactionAmount;
+    }
+
+    public void setTransactionAmount(long amount) {
+        if (transactionAmount==null)
+            transactionAmount = new MutableLiveData<>();
+        transactionAmount.setValue(amount);
+    }
 
     public LiveData<Integer> getStatusSpaceResponse(){
         if (spaceResponseStatus==null)

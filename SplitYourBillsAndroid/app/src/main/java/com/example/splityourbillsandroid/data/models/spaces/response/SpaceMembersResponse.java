@@ -91,4 +91,18 @@ public class SpaceMembersResponse {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "SpaceMembersResponse{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", spaceId=" + spaceId +
+                ", inviteId=" + inviteId +
+                ", phoneNo='" + phoneNo + '\'' +
+                ", userDetails=" + userDetails +
+                ", joined=" + joined +
+                ", userDTO=" + userDTO +
+                '}';
+    }
 }
