@@ -9,11 +9,13 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.splityourbillsandroid.base.BaseViewModel;
 import com.example.splityourbillsandroid.data.AppDataManager;
 import com.example.splityourbillsandroid.data.models.DefaultResponse;
+import com.example.splityourbillsandroid.data.models.authentication.response.ProfileResponse;
 import com.example.splityourbillsandroid.data.models.spaces.body.SpaceBody;
 import com.example.splityourbillsandroid.data.models.spaces.body.SpaceMembersBody;
 import com.example.splityourbillsandroid.data.models.spaces.response.AddNewSpaceResponse;
 import com.example.splityourbillsandroid.data.models.spaces.response.SpaceMembersResponse;
 import com.example.splityourbillsandroid.data.models.spaces.response.SpaceResponse;
+import com.example.splityourbillsandroid.data.models.transactions.TransactionBody;
 import com.example.splityourbillsandroid.data.models.transactions.TransactionsResponse;
 
 import java.util.List;
@@ -42,7 +44,7 @@ public class MainViewModel extends BaseViewModel {
     private MutableLiveData<List<TransactionsResponse>> transacrionResponse;
     private MutableLiveData<AddNewSpaceResponse> spaceDetails;
     private MutableLiveData<List<SpaceMembersResponse>> spaceMembers;
-
+    private MutableLiveData<ProfileResponse> profileResponse;
 
 
 
@@ -52,6 +54,8 @@ public class MainViewModel extends BaseViewModel {
     private MutableLiveData<Integer> spaceMembersStatus;
     private MutableLiveData<Integer> addSpaceMembersStatus;
     private MutableLiveData<Long> transactionAmount;
+    private MutableLiveData<Long> userId;
+    private MutableLiveData<Integer> saveTransactionResponse;
 
     public MutableLiveData<Long> getTransactionAmount() {
         if (transactionAmount==null)
@@ -110,7 +114,29 @@ public class MainViewModel extends BaseViewModel {
             addSpaceMembersStatus = new MutableLiveData<>();
         return addSpaceMembersStatus;
     }
+    public MutableLiveData<ProfileResponse> getProfileResponse() {
+        if (profileResponse==null)
+            profileResponse = new MutableLiveData<>();
+        return profileResponse;
+    }
+    public MutableLiveData<Long> getPersonId(){
+        if (userId==null) {
+            userId = new MutableLiveData<>();
+            userId.setValue(Long.valueOf(0));
+        }
+        return userId;
+    }
+    public void setPersonId(long personId){
+        if (userId==null)
+            userId = new MutableLiveData<>();
+        userId.setValue(personId);
 
+    }
+    public MutableLiveData<Integer> getResponseForTXNSave(){
+        if (saveTransactionResponse==null)
+            saveTransactionResponse = new MutableLiveData<>();
+        return saveTransactionResponse;
+    }
 
 
     public void getSpaceById(){
@@ -291,7 +317,67 @@ public class MainViewModel extends BaseViewModel {
         });
     }
 
+    public void getProfileDetails(){
+        if (profileResponse==null)
+            profileResponse = new MutableLiveData<>();
+
+        appDataManager.getProfile().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Response<ProfileResponse>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        getCompositeDisposable().add(d);
+                    }
+
+                    @Override
+                    public void onNext(@NonNull Response<ProfileResponse> profileResponseResponse) {
+                        profileResponse.setValue(profileResponseResponse.body());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
     public void resetSpaceMembersStatus() {
         addSpaceMembersStatus = new MutableLiveData<>();
     }
+
+    public void addTransaction(List<TransactionBody> list){
+        if (saveTransactionResponse==null)
+            saveTransactionResponse = new MutableLiveData<>();
+        appDataManager.addTransactions(list).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Response<DefaultResponse>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        getCompositeDisposable().add(d);
+                    }
+
+                    @Override
+                    public void onNext(@NonNull Response<DefaultResponse> defaultResponseResponse) {
+                        if (defaultResponseResponse.code()==200){
+                            saveTransactionResponse.setValue(200);
+                        }
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        saveTransactionResponse.setValue(500);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
+
 }

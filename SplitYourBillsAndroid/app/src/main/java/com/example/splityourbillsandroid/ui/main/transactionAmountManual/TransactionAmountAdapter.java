@@ -33,6 +33,7 @@ public class TransactionAmountAdapter extends RecyclerView.Adapter<RecyclerView.
     private static final String TAG = "HomeAdapter";
     int invites = 0;
 
+    private HashMap<Integer,Pair> map;
     private HashMap<Integer,Integer> hashMap;
 
 
@@ -41,6 +42,7 @@ public class TransactionAmountAdapter extends RecyclerView.Adapter<RecyclerView.
         mList = new ArrayList<>();
         values = new ArrayList<>();
         hashMap = new HashMap<>();
+        map = new HashMap<>();
     }
 
     public void setOnItemClickListener(View.OnClickListener onItemClickListener) {
@@ -127,6 +129,10 @@ public class TransactionAmountAdapter extends RecyclerView.Adapter<RecyclerView.
         return ans;
     }
 
+    public HashMap<Integer,Pair> getHashMapOfValues(){
+        return map;
+    }
+
 
     public void updateListData(List<SpaceMembersResponse> data) {
         mList.clear();
@@ -163,6 +169,8 @@ public class TransactionAmountAdapter extends RecyclerView.Adapter<RecyclerView.
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     Log.d(TAG, "onTextChanged: here : " + s + " start " + start + " before "  + before + " count : " + count+ " positon " + getAdapterPosition());
                     hashMap.put(getAdapterPosition(),Integer.parseInt(s.toString()));
+                    map.put(getAdapterPosition(),new Pair(Long.parseLong(s.toString()),
+                            mList.get(getAdapterPosition()).getUserId(),mList.get(getAdapterPosition()).getPhoneNo()));
                 }
 
                 @Override
@@ -181,4 +189,44 @@ public class TransactionAmountAdapter extends RecyclerView.Adapter<RecyclerView.
             super(view);
         }
     }
+
+    public class Pair {
+
+       private Long amount;
+        private long userId;
+        private String phoneNo;
+
+
+        public Long getAmount() {
+            return amount;
+        }
+
+        public void setAmount(Long amount) {
+            this.amount = amount;
+        }
+
+        public Pair(Long amount, long userId, String phoneNo) {
+            this.amount = amount;
+            this.userId = userId;
+            this.phoneNo = phoneNo;
+        }
+
+        public long getUserId() {
+            return userId;
+        }
+
+        public void setUserId(long userId) {
+            this.userId = userId;
+        }
+
+        public String getPhoneNo() {
+            return phoneNo;
+        }
+
+        public void setPhoneNo(String phoneNo) {
+            this.phoneNo = phoneNo;
+        }
+    }
+
+
 }

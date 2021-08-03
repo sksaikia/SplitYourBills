@@ -6,6 +6,7 @@ public class CreateTransaction {
     private Long amount;
 
     private String description;
+    private Long spaceId;
     private String phoneNo;
 
     public Long getAmount() {
@@ -47,7 +48,7 @@ public class CreateTransaction {
         this.spaceId = spaceId;
     }
 
-    private Long spaceId;
+
 
 
 }

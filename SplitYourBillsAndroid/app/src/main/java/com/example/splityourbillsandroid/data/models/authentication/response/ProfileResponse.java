@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class ProfileResponse {
 
     @SerializedName("id")
-    private String userId;
+    private Long userId;
 
     @SerializedName("name")
     private String name;
@@ -13,11 +13,11 @@ public class ProfileResponse {
     @SerializedName("username")
     private String phoneNo;
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

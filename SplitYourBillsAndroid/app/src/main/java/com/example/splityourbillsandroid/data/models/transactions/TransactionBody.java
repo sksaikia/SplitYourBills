@@ -9,8 +9,6 @@ public class TransactionBody {
     @SerializedName("description")
     private String description;
 
-    @SerializedName("personId")
-    private Long personId;
     @SerializedName("phoneNo")
     private String phoneNo;
     @SerializedName("spaceId")
@@ -35,13 +33,6 @@ public class TransactionBody {
         this.description = description;
     }
 
-    public Long getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(Long personId) {
-        this.personId = personId;
-    }
 
     public String getPhoneNo() {
         return phoneNo;
@@ -59,10 +50,9 @@ public class TransactionBody {
         this.spaceId = spaceId;
     }
 
-    public TransactionBody(Long amount, String description, Long personId, String phoneNo, Long spaceId) {
+    public TransactionBody(Long amount, String description, String phoneNo, Long spaceId) {
         this.amount = amount;
         this.description = description;
-        this.personId = personId;
         this.phoneNo = phoneNo;
         this.spaceId = spaceId;
     }

@@ -18,13 +18,18 @@ import android.widget.TextView;
 import com.example.splityourbillsandroid.R;
 import com.example.splityourbillsandroid.data.models.spaces.response.AddNewSpaceResponse;
 import com.example.splityourbillsandroid.data.models.spaces.response.SpaceMembersResponse;
+import com.example.splityourbillsandroid.data.models.transactions.TransactionBody;
 import com.example.splityourbillsandroid.ui.main.MainViewModel;
 import com.example.splityourbillsandroid.ui.main.SpaceMembers.SpaceMembersAdapter;
+import com.example.splityourbillsandroid.utils.Constants;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -44,6 +49,7 @@ public class TransactionAmountFragment extends Fragment {
 
     TextView totalTV;
     Long totalAmount = Long.valueOf(0);
+    String transactionDescription = " ";
 
     private static final String TAG = "TransactionAmountFragme";
 
@@ -101,6 +107,8 @@ public class TransactionAmountFragment extends Fragment {
         mList  = new ArrayList<>();
         subscribeForAmount();
 
+        transactionDescription = getArguments().getString(Constants.TRANSACTION_DESCRIPTION);
+
         initializeViews(view);
 
         viewModel.getSpaceMembersBySpaceId(spaceId);
@@ -110,6 +118,10 @@ public class TransactionAmountFragment extends Fragment {
         setUpRecyclerView(recyclerView, adapter);
 
         subscribeObserverForSpaceMembers();
+        subscribeForTransactionStatus();
+
+
+
 
 
         saveBTN.setOnClickListener(new View.OnClickListener() {
@@ -131,10 +143,35 @@ public class TransactionAmountFragment extends Fragment {
             totalTV.setText(values+" / "+ totalAmount);
             return;
         }else if (values==totalAmount){
+
+            getTheAmountsForEach();
+
             totalTV.setText(values+" / "+ totalAmount);
             showToast("Saving the transaction");
             return ;
         }
+
+
+    }
+
+    private void getTheAmountsForEach() {
+
+        List<TransactionBody> transactionList = new ArrayList<>();
+
+        HashMap<Integer, TransactionAmountAdapter.Pair> hashMap = adapter.getHashMapOfValues();
+        Iterator it = hashMap.entrySet().iterator();
+        while (it.hasNext()){
+            Map.Entry mapElement = (Map.Entry) it.next();
+            TransactionAmountAdapter.Pair value = (TransactionAmountAdapter.Pair) mapElement.getValue();
+
+            Long amount = value.getAmount();
+            String no = value.getPhoneNo();
+            TransactionBody newCT = new TransactionBody(amount,transactionDescription,no,spaceId);
+            transactionList.add(newCT);
+
+        }
+
+        viewModel.addTransaction(transactionList);
 
 
     }
@@ -206,6 +243,17 @@ public class TransactionAmountFragment extends Fragment {
         Snackbar snackbar = Snackbar.make(parentLayout, msg, Snackbar.LENGTH_INDEFINITE).
                 setDuration(2000);
         snackbar.show();
+    }
+
+    private void subscribeForTransactionStatus() {
+        viewModel.getResponseForTXNSave().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                if (integer==200){
+                    showToast("Transactions sucessfully saved");
+                }
+            }
+        });
     }
 
 

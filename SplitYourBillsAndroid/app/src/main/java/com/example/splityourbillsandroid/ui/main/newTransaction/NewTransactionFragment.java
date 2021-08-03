@@ -11,16 +11,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.splityourbillsandroid.R;
 import com.example.splityourbillsandroid.data.models.spaces.response.AddNewSpaceResponse;
 import com.example.splityourbillsandroid.data.models.spaces.response.SpaceMembersResponse;
+import com.example.splityourbillsandroid.data.models.transactions.TransactionBody;
 import com.example.splityourbillsandroid.ui.main.AddPeopleForSpace.Contacts;
 import com.example.splityourbillsandroid.ui.main.MainViewModel;
 import com.example.splityourbillsandroid.ui.main.transactionAmountManual.TransactionAmountFragment;
+import com.example.splityourbillsandroid.utils.Constants;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
@@ -43,7 +49,12 @@ public class NewTransactionFragment extends Fragment {
 
     long spaceId = Long.valueOf(0);
     TextInputEditText etDescription,etAmount;
+    long currentUserId = Long.valueOf(0);
 
+    CheckBox splitEqual, paidByUser;
+    MaterialButton saveTransactionBTN;
+
+    LinearLayout parentLayout;
     List<SpaceMembersResponse> mList;
     private static final String TAG = "NewTransactionFragment";
 
@@ -75,7 +86,10 @@ public class NewTransactionFragment extends Fragment {
 
         subscribeForSpaceId();
         subscribeObserverForSpaceMembers();
+     //   subscribeForPersonId();
 
+
+        subscribeForTransactionStatus();
 
 
         manualAmount.setOnClickListener(new View.OnClickListener() {
@@ -85,13 +99,121 @@ public class NewTransactionFragment extends Fragment {
                 if (str=="" || str.isEmpty())
                     str="0";
                 viewModel.setTransactionAmount(Long.valueOf(str));
+
+                String des2 = etDescription.getText().toString();
+                if (des2=="" || des2.isEmpty())
+                    des2=" ";
+                Bundle bundle = new Bundle();
+                bundle.putString(Constants.TRANSACTION_DESCRIPTION, des2);
+
+                transactionAmountFragment.setArguments(bundle);
                 initializeFragments(transactionAmountFragment);
 
             }
         });
 
+        saveTransactionBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveTXN();
+            }
+        });
+
+
+
+
 
         return view;
+    }
+
+    private void subscribeForTransactionStatus() {
+        viewModel.getResponseForTXNSave().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                if (integer==200){
+                    showToast("Transactions sucessfully saved");
+                }
+            }
+        });
+    }
+
+//    private void subscribeForPersonId() {
+//        viewModel.getPersonId().observe(this, new Observer<Long>() {
+//            @Override
+//            public void onChanged(Long aLong) {
+//                currentUserId = aLong;
+//            }
+//        });
+//    }
+
+    private void saveTXN() {
+        boolean checked1 = false;
+//        boolean checked2 = false;
+
+        if (splitEqual.isChecked())
+            checked1 = true;
+
+//        if (paidByUser.isChecked())
+//            checked2 = true;
+
+
+//        if (checked1==true && checked2==true){
+//            showToast("Both cant be true. Select only one");
+//            return;
+//        }
+
+        if (checked1==true){
+            splitTheBillEqually();
+            return;
+        }
+//        if (checked2==true){
+//            youPaidThewholeBill();
+//            return;
+//        }
+
+    }
+
+//    private void youPaidThewholeBill() {
+//        String str = etAmount.getText().toString();
+//        if (str=="" || str.isEmpty())
+//            str="0";
+//        long amount = Long.valueOf(str);
+//        String description = etDescription.getText().toString();
+//
+//        List<CreateTransaction> transactionList = new ArrayList<>();
+//        //TODO Need current user id
+//        for (SpaceMembersResponse s :mList){
+//            if (s.getUserId()==currentUserId){
+//                String no = s.getPhoneNo();
+//                CreateTransaction newCT = new CreateTransaction(amount,description,no,spaceId);
+//                transactionList.add(newCT);
+//                break;
+//            }
+//        }
+//
+//        //TODO the nwtwoerk call
+//
+//    }
+
+    private void splitTheBillEqually() {
+        String str = etAmount.getText().toString();
+        if (str=="" || str.isEmpty())
+            str="0";
+        long amount = Long.valueOf(str);
+        int totalMembers = mList.size();
+        long eachPersonAmount = amount/totalMembers;
+        String description = etDescription.getText().toString();
+
+        List<TransactionBody> transactionList = new ArrayList<>();
+        for (SpaceMembersResponse s :mList){
+            String no = s.getPhoneNo();
+            TransactionBody newCT = new TransactionBody(eachPersonAmount,description,no,spaceId);
+            transactionList.add(newCT);
+        }
+
+        //TODO do the network call again
+        viewModel.addTransaction(transactionList);
+
     }
 
     @Override
@@ -111,6 +233,9 @@ public class NewTransactionFragment extends Fragment {
         etDescription = view.findViewById(R.id.et_description);
         etAmount = view.findViewById(R.id.et_amount);
         manualAmount = view.findViewById(R.id.manual_tv);
+        splitEqual = view.findViewById(R.id.checkbox);
+        saveTransactionBTN = view.findViewById(R.id.btn_save);
+        parentLayout = view.findViewById(R.id.relative_layout);
     }
 
     @Override
@@ -154,6 +279,14 @@ public class NewTransactionFragment extends Fragment {
         transaction.addToBackStack(backStateName);
         transaction.commit();
     }
+
+    private void showToast(String msg) {
+        Snackbar snackbar = Snackbar.make(parentLayout, msg, Snackbar.LENGTH_INDEFINITE).
+                setDuration(2000);
+        snackbar.show();
+    }
+
+
 
 
 }

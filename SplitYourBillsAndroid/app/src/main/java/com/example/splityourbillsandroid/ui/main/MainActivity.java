@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.splityourbillsandroid.R;
+import com.example.splityourbillsandroid.data.models.authentication.response.ProfileResponse;
 import com.example.splityourbillsandroid.ui.main.friends.FriendsFragment;
 import com.example.splityourbillsandroid.ui.main.notifications.NotificationsFragment;
 import com.example.splityourbillsandroid.ui.main.profile.ProfileFragment;
@@ -72,8 +74,22 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
+        viewModel.getProfileDetails();
+
+        subscribeForProfileDetails();
+
 
     }
+
+    private void subscribeForProfileDetails() {
+        viewModel.getProfileResponse().observe(this, new Observer<ProfileResponse>() {
+            @Override
+            public void onChanged(ProfileResponse profileResponse) {
+                viewModel.setPersonId(profileResponse.getUserId());
+            }
+        });
+    }
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
