@@ -379,5 +379,9 @@ public class MainViewModel extends BaseViewModel {
 
     }
 
+    public void logout(){
+        appDataManager.setAccessToken("");
+    }
+
 
 }
