@@ -1,7 +1,11 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.TXNDetails.PersonDetailsTXN;
+import com.example.demo.dto.TXNDetails.TransactionDetails;
 import com.example.demo.dto.Transactions.AddNewTransactionDTO;
 import com.example.demo.dto.Transactions.AddTransactionsDTO;
+import com.example.demo.dto.Users.InviteUserDetails;
+import com.example.demo.dto.Users.UserDetails;
 import com.example.demo.model.Invites;
 import com.example.demo.model.SpaceMembers;
 import com.example.demo.model.Transactions;
@@ -13,9 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Transactional
@@ -141,6 +143,88 @@ public class TransactionsService {
         if (optionalTransactions.isPresent()){
             transactionsRepository.deleteById(id);
         }
+    }
+
+
+    public TransactionDetails getTXNDetailsBySpaceId(long spaceId){
+        List<Transactions> list = transactionsRepository.findAllBySpaceId(spaceId);
+        List<AddTransactionsDTO> transactionsDTOS = new ArrayList<>();
+
+        for (Transactions t : list)
+            transactionsDTOS.add(getDTOFromTransaction(t));
+
+        HashMap<Long,Long> mapPerson = new HashMap<>();
+        HashMap<Long,Long> mapInvites = new HashMap<>();
+        HashMap<Long, InviteUserDetails> detailsInvites = new HashMap<>();
+        HashMap<Long, UserDetails> detailsUsers = new HashMap<>();
+
+        long totalAmount =0 ;
+        long perPersonAmount = 0;
+
+        for (AddTransactionsDTO txn : transactionsDTOS){
+
+            totalAmount += txn.getAmount();
+            long personId = txn.getPersonId();
+            long inviteId = txn.getInvites().getInviteId();
+            long amount = txn.getAmount();
+            System.out.println("Persondi : " + personId + " inviteid : " + inviteId);
+            if (inviteId==-1){
+                if (mapPerson.containsKey(personId)){
+                    mapPerson.put(personId,mapPerson.get(personId)+amount);
+                }else{
+                    mapPerson.put(personId,amount);
+                }
+                detailsUsers.put(personId,txn.getUserDetails());
+
+            }else {
+                if (mapInvites.containsKey(inviteId)){
+                    mapInvites.put(inviteId,mapInvites.get(inviteId)+amount);
+                }else{
+                    mapInvites.put(inviteId,amount);
+                }
+                detailsInvites.put(inviteId,txn.getInvites());
+
+            }
+
+
+        }
+
+        int totalMembers = mapInvites.size()+mapPerson.size();
+        perPersonAmount = totalAmount/totalMembers;
+
+        TransactionDetails transactionDetails = new TransactionDetails();
+        transactionDetails.setTotalAmount(totalAmount);
+        transactionDetails.setPerPerson(perPersonAmount);
+
+        List<PersonDetailsTXN> personDetailsTXNS = new ArrayList<>();
+        System.out.println("Size : person : " + mapPerson.size() + " ivnite : " + mapInvites.size());
+        Iterator it = mapPerson.entrySet().iterator();
+        while (it.hasNext()){
+            Map.Entry mapElement = (Map.Entry) it.next();
+
+            long key = (long) mapElement.getKey();
+            long amount = (long) mapElement.getValue();
+
+            PersonDetailsTXN o = new PersonDetailsTXN(key, (long) -1,amount);
+            o.setUserDetails(detailsUsers.get(key));
+            personDetailsTXNS.add(o);
+        }
+        Iterator it2 = mapInvites.entrySet().iterator();
+        while (it2.hasNext()){
+            Map.Entry mapElement = (Map.Entry) it2.next();
+
+            long key = (long) mapElement.getKey();
+            long amount = (long) mapElement.getValue();
+
+            PersonDetailsTXN o = new PersonDetailsTXN((long) -1, key,amount);
+            o.setInvites(detailsInvites.get(key));
+            personDetailsTXNS.add(o);
+        }
+
+        transactionDetails.setPersonDetailsTXNS(personDetailsTXNS);
+
+        return transactionDetails;
+
     }
 
 

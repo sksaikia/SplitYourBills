@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.TXNDetails.TransactionDetails;
 import com.example.demo.dto.Transactions.AddNewTransactionDTO;
 import com.example.demo.dto.Transactions.AddTransactionsDTO;
 import com.example.demo.model.Transactions;
@@ -57,5 +58,11 @@ public class TransactionController {
                 true,"Transaction deleted"),HttpStatus.OK);
     }
 
+
+    @GetMapping("/details/{spaceId}")
+    public ResponseEntity<TransactionDetails> getTransactionsBySpaceIdPersonLevelDetails(@PathVariable("spaceId") long spaceId){
+        TransactionDetails transactionDetails = transactionsService.getTXNDetailsBySpaceId(spaceId);
+        return new ResponseEntity<TransactionDetails>(transactionDetails,HttpStatus.OK);
+    }
 
 }
