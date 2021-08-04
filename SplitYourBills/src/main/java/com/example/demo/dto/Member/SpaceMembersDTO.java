@@ -2,6 +2,7 @@ package com.example.demo.dto.Member;
 
 import com.example.demo.dto.Users.InviteUserDetails;
 import com.example.demo.dto.Users.UserDetails;
+import com.example.demo.model.Invites;
 import com.example.demo.model.Space;
 import com.example.demo.model.SpaceMembers;
 
@@ -13,6 +14,7 @@ public class SpaceMembersDTO {
     private String phoneNo;
     private Boolean isJoined;
     private UserDetails userDetails;
+    private InviteUserDetails invites;
 
     public UserDetails getUserDetails() {
         return userDetails;
@@ -38,8 +40,17 @@ public class SpaceMembersDTO {
         this.setJoined(spaceMembers.getJoined());
         this.setUserId(spaceMembers.getPersonId());
         this.userDetails = new UserDetails(spaceMembers.getUser());
+        this.invites = new InviteUserDetails(spaceMembers.getInvites());
     }
 
+
+    public InviteUserDetails getInvites() {
+        return invites;
+    }
+
+    public void setInvites(InviteUserDetails invites) {
+        this.invites = invites;
+    }
 
     public SpaceMembersDTO() {
     }

@@ -1,6 +1,8 @@
 package com.example.demo.dto.Transactions;
 
+import com.example.demo.dto.Users.InviteUserDetails;
 import com.example.demo.dto.Users.UserDetails;
+import com.example.demo.model.Invites;
 import com.example.demo.model.SpaceMembers;
 import com.example.demo.model.Transactions;
 
@@ -8,6 +10,15 @@ public class AddTransactionsDTO {
     private long transactionId,spaceId,personId,amount;
     private String description;
     private UserDetails userDetails;
+    private InviteUserDetails invites;
+
+    public InviteUserDetails getInvites() {
+        return invites;
+    }
+
+    public void setInvites(InviteUserDetails invites) {
+        this.invites = invites;
+    }
 
     public UserDetails getUserDetails() {
         return userDetails;
@@ -67,6 +78,7 @@ public class AddTransactionsDTO {
         this.setAmount(transactions.getAmount());
         this.setDescription(transactions.getDescription());
         this.userDetails = new UserDetails(transactions.getUser());
+        this.invites = new InviteUserDetails(transactions.getInvites());
     }
 
 

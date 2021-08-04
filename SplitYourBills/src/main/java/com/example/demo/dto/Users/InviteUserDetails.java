@@ -7,6 +7,22 @@ public class InviteUserDetails {
     private Long inviteId;
     private Long spaceId;
     private String phoneNo;
+    private String name;
+
+    public InviteUserDetails(Long inviteId, Long spaceId, String phoneNo, String name) {
+        this.inviteId = inviteId;
+        this.spaceId = spaceId;
+        this.phoneNo = phoneNo;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public InviteUserDetails() {
 
@@ -16,6 +32,7 @@ public class InviteUserDetails {
        this.inviteId = invites.getInviteId();
        this.spaceId = invites.getSpaceId();
        this.phoneNo = invites.getPhoneNo();
+       this.name = invites.getInviteName();
     }
 
     public Long getInviteId() {

@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class Invites extends DateAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="invite_id")
     private Long inviteId;
 
     @Column(name="space_id")
@@ -16,6 +17,18 @@ public class Invites extends DateAudit {
 
     @Column(name="phone_no")
     private String phoneNo;
+    @Column(name="invite_name")
+    private String inviteName;
+
+    public String getInviteName() {
+        return inviteName;
+    }
+
+    public void setInviteName(String inviteName) {
+        this.inviteName = inviteName;
+    }
+
+
 
     public Long getSpaceId() {
         return spaceId;
@@ -52,5 +65,11 @@ public class Invites extends DateAudit {
     public Invites(Long spaceId, String phoneNo) {
         this.spaceId = spaceId;
         this.phoneNo = phoneNo;
+    }
+
+    public Invites(Long spaceId, String phoneNo, String inviteName) {
+        this.spaceId = spaceId;
+        this.phoneNo = phoneNo;
+        this.inviteName = inviteName;
     }
 }

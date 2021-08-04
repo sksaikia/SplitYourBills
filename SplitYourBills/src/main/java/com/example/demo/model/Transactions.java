@@ -37,6 +37,18 @@ public class Transactions extends DateAudit {
     @JoinColumn(name = "space_id", referencedColumnName = "space_id",insertable = false,updatable = false)
     private Space space;
 
+    @ManyToOne
+    @JoinColumn(name = "invite_id", referencedColumnName = "invite_id",insertable = false,updatable = false)
+    private Invites invites;
+
+    public Invites getInvites() {
+        return invites;
+    }
+
+    public void setInvites(Invites invites) {
+        this.invites = invites;
+    }
+
     public Transactions() {
     }
 

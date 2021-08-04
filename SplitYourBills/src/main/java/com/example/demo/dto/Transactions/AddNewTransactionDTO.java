@@ -4,7 +4,7 @@ import com.example.demo.dto.Users.UserDetails;
 import com.example.demo.model.Transactions;
 
 public class AddNewTransactionDTO {
-    private long spaceId,personId,amount;
+    private long spaceId,amount;
     private String description;
     private String phoneNo;
 
@@ -16,13 +16,6 @@ public class AddNewTransactionDTO {
         this.phoneNo = phoneNo;
     }
 
-    public AddNewTransactionDTO(long spaceId, long personId, long amount, String description, String phoneNo) {
-        this.spaceId = spaceId;
-        this.personId = personId;
-        this.amount = amount;
-        this.description = description;
-        this.phoneNo = phoneNo;
-    }
 
     public long getSpaceId() {
         return spaceId;
@@ -30,14 +23,6 @@ public class AddNewTransactionDTO {
 
     public void setSpaceId(long spaceId) {
         this.spaceId = spaceId;
-    }
-
-    public long getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(long personId) {
-        this.personId = personId;
     }
 
     public long getAmount() {
@@ -59,16 +44,14 @@ public class AddNewTransactionDTO {
     public AddNewTransactionDTO() {
     }
 
-    public AddNewTransactionDTO(long spaceId, long personId, long amount, String description) {
+    public AddNewTransactionDTO(long spaceId, long amount, String description) {
         this.spaceId = spaceId;
-        this.personId = personId;
         this.amount = amount;
         this.description = description;
     }
 
     public AddNewTransactionDTO(Transactions transactions){
         this.setSpaceId(transactions.getSpaceId());
-        this.setPersonId(transactions.getPersonId());
         this.setAmount(transactions.getAmount());
         this.setDescription(transactions.getDescription());
     }

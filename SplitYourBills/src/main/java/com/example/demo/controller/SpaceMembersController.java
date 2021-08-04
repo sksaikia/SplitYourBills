@@ -17,18 +17,6 @@ public class SpaceMembersController {
     @Autowired
     private SpaceMembersService spaceMembersService;
 
-
-//    @GetMapping("/{inviteId}")
-//    public ResponseEntity<Invites> getInviteById(@PathVariable("inviteId") long inviteId, @CurrentUser UserPrincipal currentUser){
-//        Optional<Invites> optionalInvites = invitesService.getInviteById(inviteId);
-//        Invites newInvite = null;
-//        if (optionalInvites.isPresent()){
-//            newInvite = optionalInvites.get();
-//        }
-//        return new ResponseEntity<Invites>(newInvite,HttpStatus.OK);
-//
-//    }
-
     @PostMapping("/add")
     public ResponseEntity<ApiResponse> addInviteOrPerson(@RequestBody AddSpaceMemberDTO addSpaceMemberDTO){
 
@@ -57,7 +45,7 @@ public class SpaceMembersController {
 
 
     @DeleteMapping("/{inviteId}")
-    public ResponseEntity<ApiResponse> deletePersonBySpaceId(@PathVariable("inviteId") Long inviteId){
+    public ResponseEntity<ApiResponse> deletePersonByInviteId(@PathVariable("inviteId") Long inviteId){
         spaceMembersService.deleteByInviteID(inviteId);
         return new ResponseEntity<ApiResponse>(new ApiResponse(true,"Successfully deleted"),HttpStatus.OK);
     }

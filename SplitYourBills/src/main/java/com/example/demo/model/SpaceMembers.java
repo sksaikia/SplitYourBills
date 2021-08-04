@@ -32,6 +32,21 @@ public class SpaceMembers extends DateAudit {
     @JoinColumn(name = "person_id", referencedColumnName = "user_id",insertable = false,updatable = false)
     private User user;
 
+    public Invites getInvites() {
+        return invites;
+    }
+
+    public void setInvites(Invites invites) {
+        this.invites = invites;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "invite_id", referencedColumnName = "invite_id",insertable = false,updatable = false)
+    private Invites invites;
+
+
+
+
     public User getUser() {
         return user;
     }
