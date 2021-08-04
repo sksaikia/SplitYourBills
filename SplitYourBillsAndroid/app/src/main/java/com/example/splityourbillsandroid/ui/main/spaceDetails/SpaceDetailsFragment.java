@@ -21,6 +21,7 @@ import com.example.splityourbillsandroid.ui.main.AddPeopleForSpace.AddPeopleFrag
 import com.example.splityourbillsandroid.ui.main.MainViewModel;
 import com.example.splityourbillsandroid.ui.main.SpaceMembers.SpaceMembersFragment;
 import com.example.splityourbillsandroid.ui.main.newTransaction.NewTransactionFragment;
+import com.example.splityourbillsandroid.ui.main.viewDetailsTXN.ViewDetailsTransactionFragment;
 import com.example.splityourbillsandroid.utils.Constants;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -51,7 +52,10 @@ public class SpaceDetailsFragment extends Fragment {
     @Inject
     NewTransactionFragment newTransactionFragment;
 
-    MaterialButton addNewPeopleBTN,viewMembersBTN,newTransactionBTN;
+    @Inject
+    ViewDetailsTransactionFragment viewDetailsTransactionFragment;
+
+    MaterialButton addNewPeopleBTN,viewMembersBTN,newTransactionBTN,viewDetailsBTN;
 
 
     List<TransactionsResponse> mList;
@@ -71,25 +75,11 @@ public class SpaceDetailsFragment extends Fragment {
 
             Log.d(TAG, "onClick: POsition ::: " + position);
 
-
-         /*   //Convert it to long in the next fragment
-            String spaceId = String.valueOf(mList.get(position).getSpaceId());
-
-            Bundle bundle = new Bundle();
-            bundle.putString(Constants.SPACE_ID, spaceId);
-
-            spaceDetailsFragment.setArguments(bundle);
-
-            initializeFragments(spaceDetailsFragment);*/
-
-
-
-
         }
     };
-
-
     private void initializeFragments(Fragment frag) {
+
+
         String backStateName = frag.getClass().toString();
         //Log.d(TAG, "onBtnOtpLoginClicked: " + backStateName);
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -99,10 +89,22 @@ public class SpaceDetailsFragment extends Fragment {
         transaction.commit();
     }
 
+    private void initializeFragments(Fragment frag,String id) {
 
 
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.SPACE_ID, id);
 
+        frag.setArguments(bundle);
 
+        String backStateName = frag.getClass().toString();
+        //Log.d(TAG, "onBtnOtpLoginClicked: " + backStateName);
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        //   transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
+        transaction.replace(R.id.frame_layout_main, frag);
+        transaction.addToBackStack(backStateName);
+        transaction.commit();
+    }
 
     @Inject
     public SpaceDetailsFragment() {
@@ -156,6 +158,12 @@ public class SpaceDetailsFragment extends Fragment {
                 initializeFragments(newTransactionFragment);
             }
         });
+        viewDetailsBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initializeFragments(viewDetailsTransactionFragment,spaceId);
+            }
+        });
 
 
 
@@ -169,6 +177,7 @@ public class SpaceDetailsFragment extends Fragment {
         addNewPeopleBTN = view.findViewById(R.id.btn_add_members);
         viewMembersBTN = view.findViewById(R.id.btn_view_members);
         newTransactionBTN = view.findViewById(R.id.btn_add_transaction);
+        viewDetailsBTN = view.findViewById(R.id.btn_view_details);
 
     }
 

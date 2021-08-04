@@ -46,12 +46,17 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
 
 
-        String str = mList.get(position).getUserDetails().getUserName() + " paid " + mList.get(position).getAmount().toString();
-        holder.name.setText(str);
-        holder.description.setText(mList.get(position).getDescription());
 
 
-
+        if (mList.get(position).getPersonID()==-1){
+            String str = mList.get(position).getInvites().getName() + " paid " + mList.get(position).getAmount().toString();
+            holder.name.setText(str);
+            holder.description.setText(mList.get(position).getDescription());
+        }else{
+            String str = mList.get(position).getUserDetails().getUserName() + " paid " + mList.get(position).getAmount().toString();
+            holder.name.setText(str);
+            holder.description.setText(mList.get(position).getDescription());
+        }
     }
 
     @Override

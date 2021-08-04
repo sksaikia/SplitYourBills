@@ -71,11 +71,27 @@
             android:fontFamily="@font/roboto"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/input_layout2"
-            android:text="Add New Transaction"
+            android:text="Add Transaction"
             app:rippleColor="@color/md_pink_100"
             app:backgroundTint="#C44BC1"
             />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_view_details"
+            style="@style/ButtonStyle"
+            android:layout_gravity="center"
+            android:textSize="15dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:layout_marginRight="@dimen/margin_right"
+            android:fontFamily="@font/roboto"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/input_layout2"
+            android:text="View Details"
+            app:rippleColor="@color/md_pink_100"
+            app:backgroundTint="#C44BC1"
+            />
 
     </LinearLayout>
 

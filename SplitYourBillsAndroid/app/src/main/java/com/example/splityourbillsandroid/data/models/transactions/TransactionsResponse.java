@@ -1,6 +1,7 @@
 package com.example.splityourbillsandroid.data.models.transactions;
 
 import com.example.splityourbillsandroid.data.models.authentication.response.UserResponse;
+import com.example.splityourbillsandroid.data.models.spaces.response.InviteResponse;
 import com.google.gson.annotations.SerializedName;
 
 public class TransactionsResponse {
@@ -22,6 +23,18 @@ public class TransactionsResponse {
 
     @SerializedName("userDetails")
     private UserResponse userDetails;
+
+    @SerializedName("invites")
+    private InviteResponse invites;
+
+    public InviteResponse getInvites() {
+        return invites;
+    }
+
+    public void setInvites(InviteResponse invites) {
+        this.invites = invites;
+    }
+
 
     public Long getTransactionId() {
         return transactionId;

@@ -28,6 +28,18 @@ public class SpaceMembersResponse {
     @SerializedName("userDTO")
     private UserResponse userDTO;
 
+
+    @SerializedName("invites")
+    private InviteResponse invites;
+
+    public InviteResponse getInvites() {
+        return invites;
+    }
+
+    public void setInvites(InviteResponse invites) {
+        this.invites = invites;
+    }
+
     public Long getUserId() {
         return userId;
     }
