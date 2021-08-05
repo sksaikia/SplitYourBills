@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#050507"
+    android:background="#000a12"
     android:layout_height="match_parent"
     android:id="@+id/linear_layout">
 
@@ -23,7 +23,8 @@
         android:layout_marginBottom="16dp"
         android:layout_marginRight="16dp"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/ic_notifications"
-        android:background="#C44BC1"
-        android:backgroundTint="#C44BC1"/>
+        android:src="@drawable/ic_add"
+       android:scaleType="fitXY"
+        android:backgroundTint="#FFF"
+      />
 </RelativeLayout>

@@ -16,6 +16,7 @@ import com.example.splityourbillsandroid.data.models.spaces.response.AddNewSpace
 import com.example.splityourbillsandroid.data.models.spaces.response.SpaceMembersResponse;
 import com.example.splityourbillsandroid.data.models.spaces.response.SpaceResponse;
 import com.example.splityourbillsandroid.data.models.transactions.TransactionBody;
+import com.example.splityourbillsandroid.data.models.transactions.TransactionDetailsResponse;
 import com.example.splityourbillsandroid.data.models.transactions.TransactionsResponse;
 
 import java.util.List;
@@ -45,6 +46,7 @@ public class MainViewModel extends BaseViewModel {
     private MutableLiveData<AddNewSpaceResponse> spaceDetails;
     private MutableLiveData<List<SpaceMembersResponse>> spaceMembers;
     private MutableLiveData<ProfileResponse> profileResponse;
+    private MutableLiveData<TransactionDetailsResponse> profileTXNDetailsResponse;
 
 
 
@@ -138,6 +140,11 @@ public class MainViewModel extends BaseViewModel {
         return saveTransactionResponse;
     }
 
+    public MutableLiveData<TransactionDetailsResponse> getTXNDetailsForSpace(){
+        if (profileTXNDetailsResponse==null)
+            profileTXNDetailsResponse = new MutableLiveData<>();
+        return profileTXNDetailsResponse;
+    }
 
     public void getSpaceById(){
         if (spaceResponseStatus==null)
@@ -383,5 +390,30 @@ public class MainViewModel extends BaseViewModel {
         appDataManager.setAccessToken("");
     }
 
+    public void getTXNDetailsForSpaceId(long spaceId){
+        appDataManager.getTXNDetailsForSpace(spaceId).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<Response<TransactionDetailsResponse>>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+                getCompositeDisposable().add(d);
+            }
 
+            @Override
+            public void onNext(@NonNull Response<TransactionDetailsResponse> transactionDetailsResponseResponse) {
+                if (transactionDetailsResponseResponse.code()==200){
+                    profileTXNDetailsResponse.setValue(transactionDetailsResponseResponse.body());
+                }
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
 }

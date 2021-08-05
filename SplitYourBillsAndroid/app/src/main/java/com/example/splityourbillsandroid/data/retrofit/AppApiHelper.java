@@ -13,6 +13,7 @@ import com.example.splityourbillsandroid.data.models.spaces.response.AddNewSpace
 import com.example.splityourbillsandroid.data.models.spaces.response.SpaceMembersResponse;
 import com.example.splityourbillsandroid.data.models.spaces.response.SpaceResponse;
 import com.example.splityourbillsandroid.data.models.transactions.TransactionBody;
+import com.example.splityourbillsandroid.data.models.transactions.TransactionDetailsResponse;
 import com.example.splityourbillsandroid.data.models.transactions.TransactionsResponse;
 
 import java.util.List;
@@ -76,6 +77,11 @@ public class AppApiHelper implements APIInterface{
     @Override
     public Observable<Response<DefaultResponse>> addTransactions(List<TransactionBody> transactionBodies) {
         return api.addTransactions(transactionBodies);
+    }
+
+    @Override
+    public Observable<Response<TransactionDetailsResponse>> getTXNDetailsForSpace(long spaceId) {
+        return api.getTXNDetailsForSpace(spaceId);
     }
 
 

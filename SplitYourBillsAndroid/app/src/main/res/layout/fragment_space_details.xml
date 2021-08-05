@@ -28,16 +28,18 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/input_layout2"
             android:text="Add members"
+            android:drawableLeft="@drawable/ic_person"
             app:rippleColor="@color/md_pink_100"
-            app:backgroundTint="#C44BC1"
+            app:backgroundTint="#2910F8"
             />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_view_members"
             style="@style/ButtonStyle"
             android:layout_gravity="center"
-            android:textSize="15dp"
+            android:textSize="12dp"
             android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_all_people"
             android:layout_height="50dp"
             android:layout_marginLeft="@dimen/margin_left"
             android:layout_marginRight="@dimen/margin_right"
@@ -46,7 +48,7 @@
             android:layout_below="@+id/input_layout2"
             android:text="View Members"
             app:rippleColor="@color/md_pink_100"
-            app:backgroundTint="#C44BC1"
+            app:backgroundTint="#2910F8"
             />
 
 
@@ -63,7 +65,8 @@
             android:id="@+id/btn_add_transaction"
             style="@style/ButtonStyle"
             android:layout_gravity="center"
-            android:textSize="15dp"
+            android:drawableLeft="@drawable/ic_add_circle"
+            android:textSize="12dp"
             android:layout_weight="1"
             android:layout_height="50dp"
             android:layout_marginLeft="@dimen/margin_left"
@@ -73,14 +76,15 @@
             android:layout_below="@+id/input_layout2"
             android:text="Add Transaction"
             app:rippleColor="@color/md_pink_100"
-            app:backgroundTint="#C44BC1"
+            app:backgroundTint="#2910F8"
             />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_view_details"
             style="@style/ButtonStyle"
             android:layout_gravity="center"
-            android:textSize="15dp"
+            android:textSize="12dp"
+            android:drawableLeft="@drawable/ic_details"
             android:layout_weight="1"
             android:layout_height="50dp"
             android:layout_marginLeft="@dimen/margin_left"
@@ -90,7 +94,7 @@
             android:layout_below="@+id/input_layout2"
             android:text="View Details"
             app:rippleColor="@color/md_pink_100"
-            app:backgroundTint="#C44BC1"
+            app:backgroundTint="#2910F8"
             />
 
     </LinearLayout>

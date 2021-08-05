@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#050507"
+    android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".ui.main.viewDetailsTXN.ViewDetailsTransactionFragment">
+    android:id="@+id/linear_layout">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/total_amount"
+        android:layout_marginTop="10sp"
+        android:text="Total Amount : "
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+    </TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/per_person_amount"
+        android:text="Total Amount : "
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_marginTop="25dp"
+        android:background="#050507"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/listitem_space_home"
+        android:id="@+id/recycler_view">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</LinearLayout>

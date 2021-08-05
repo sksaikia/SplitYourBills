@@ -12,6 +12,7 @@ import com.example.splityourbillsandroid.data.models.spaces.response.AddNewSpace
 import com.example.splityourbillsandroid.data.models.spaces.response.SpaceMembersResponse;
 import com.example.splityourbillsandroid.data.models.spaces.response.SpaceResponse;
 import com.example.splityourbillsandroid.data.models.transactions.TransactionBody;
+import com.example.splityourbillsandroid.data.models.transactions.TransactionDetailsResponse;
 import com.example.splityourbillsandroid.data.models.transactions.TransactionsResponse;
 
 import java.util.List;
@@ -58,5 +59,10 @@ public interface APIInterface {
     //Transactions
     @POST("api/transactions/add")
     Observable<Response<DefaultResponse>> addTransactions(@Body List<TransactionBody> transactionBodies);
+
+
+    @GET("api/transactions/details/{spaceId}")
+    Observable<Response<TransactionDetailsResponse>> getTXNDetailsForSpace(@Path("spaceId") long spaceId);
+
 
 }

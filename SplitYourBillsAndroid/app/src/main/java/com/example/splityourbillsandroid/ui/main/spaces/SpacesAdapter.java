@@ -47,7 +47,7 @@ public class SpacesAdapter extends RecyclerView.Adapter<SpacesAdapter.viewholder
 
 
         holder.name.setText(mList.get(position).getSpaceName());
-
+        holder.description.setText(mList.get(position).getSpaceDescription());
 
 
     }
@@ -67,7 +67,7 @@ public class SpacesAdapter extends RecyclerView.Adapter<SpacesAdapter.viewholder
 
     public class viewholder extends RecyclerView.ViewHolder {
 
-        TextView name;
+        TextView name,description;
 
         public viewholder(@NonNull View itemView) {
 
@@ -76,6 +76,7 @@ public class SpacesAdapter extends RecyclerView.Adapter<SpacesAdapter.viewholder
             itemView.setTag(this);
 
             name = itemView.findViewById(R.id.space_name);
+            description = itemView.findViewById(R.id.space_description);
 
             itemView.setOnClickListener(onItemClickListener);
 

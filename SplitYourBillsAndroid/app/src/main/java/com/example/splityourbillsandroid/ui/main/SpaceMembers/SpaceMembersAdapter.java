@@ -40,7 +40,7 @@ public class SpaceMembersAdapter extends RecyclerView.Adapter<SpaceMembersAdapte
     @Override
     public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType==0) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem_transactions, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem_space_members, parent, false);
             return new viewholder(view);
         }else{
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem_empty, parent, false);
@@ -104,8 +104,8 @@ public class SpaceMembersAdapter extends RecyclerView.Adapter<SpaceMembersAdapte
 
             itemView.setTag(this);
 
-            name = itemView.findViewById(R.id.transaction_name);
-            description = itemView.findViewById(R.id.transaction_description);
+            name = itemView.findViewById(R.id.name);
+            description = itemView.findViewById(R.id.phone);
 
             itemView.setOnClickListener(onItemClickListener);
 
