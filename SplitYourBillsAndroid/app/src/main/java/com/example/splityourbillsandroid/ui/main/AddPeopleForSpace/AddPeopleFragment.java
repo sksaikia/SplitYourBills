@@ -188,7 +188,7 @@ public class AddPeopleFragment extends Fragment {
     @Override
     public void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
-
+        String nameContact = "";
         switch (reqCode) {
             case (PICK_CONTACT) :
                 if (resultCode == Activity.RESULT_OK) {
@@ -210,7 +210,8 @@ public class AddPeopleFragment extends Fragment {
                                     null, null);
                             phones.moveToFirst();
                             String cNumber = phones.getString(phones.getColumnIndex("data1"));
-                            System.out.println("number is:"+cNumber);
+                            nameContact = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
+
                             Log.d(TAG, "onActivityResult: " + cNumber);
 
                             StringBuffer stringBuffer = new StringBuffer("");
@@ -230,7 +231,7 @@ public class AddPeopleFragment extends Fragment {
                         }
 
                         Log.d(TAG, "onActivityResult: " +  name);
-                        SpaceMembersBody spaceMembersBody = new SpaceMembersBody(phoneNo,spaceId);
+                        SpaceMembersBody spaceMembersBody = new SpaceMembersBody(phoneNo,spaceId,name);
                         //TODO handle it more efficiently
                         viewModel.addNewMemberInSpace(spaceMembersBody);
                     }

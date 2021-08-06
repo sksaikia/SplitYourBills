@@ -11,6 +11,23 @@ public class SpaceMembersBody {
     @SerializedName("spaceId")
     private Long spaceId;
 
+    @SerializedName("name")
+    private String name;
+
+    public SpaceMembersBody(String phoneNo, Long spaceId, String name) {
+        this.phoneNo = phoneNo;
+        this.spaceId = spaceId;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public SpaceMembersBody(String phoneNo, Long spaceId) {
         this.phoneNo = phoneNo;
         this.spaceId = spaceId;

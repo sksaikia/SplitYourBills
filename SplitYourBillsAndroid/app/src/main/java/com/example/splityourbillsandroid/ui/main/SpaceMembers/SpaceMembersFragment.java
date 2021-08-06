@@ -128,11 +128,11 @@ public class SpaceMembersFragment extends Fragment {
             @Override
             public void onChanged(List<SpaceMembersResponse> spaceMembersResponses) {
                 mList = spaceMembersResponses;
-                inviteCount = adapter.getInviteCount();
+
                 Log.d(TAG, "onChanged: inviteCount : " + inviteCount);
                 adapter.updateListData(mList);
                 //TODO fix it the invite thingy
-                invites.setText(inviteCount + " people have been invited to jpin this space. Fix the invite count thingy ");
+                inviteCount = adapter.getInviteCount();
             }
         });
     }

@@ -16,7 +16,7 @@
         app:strokeColor="#C44BC1"
         app:strokeWidth="1dp"
         app:cardCornerRadius="8dp"
-        android:layout_height="wrap_content">
+        android:layout_height="90dp">
 
 
         <LinearLayout
@@ -30,6 +30,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:padding="4dp"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/ic_person_white">
 
@@ -47,6 +48,7 @@
                     tools:text="Name"
                     android:paddingLeft="10dp"
                     android:gravity="center"
+                    android:layout_marginTop="8dp"
                     android:textColor="#FFFFFF"
                     android:fontFamily="@font/roboto_medium"
                     android:textSize="20sp"
@@ -68,6 +70,20 @@
 
                 </TextView>
 
+                <com.google.android.material.chip.Chip
+                    android:layout_width="80dp"
+                    android:id="@+id/chip"
+                    android:visibility="gone"
+                    android:text="Invited"
+                    android:gravity="center"
+                    android:layout_marginBottom="4dp"
+                    android:textColor="#FFF"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    android:backgroundTint="#2910F8"
+                    android:layout_height="40dp">
+
+                </com.google.android.material.chip.Chip>
 
 
             </LinearLayout>

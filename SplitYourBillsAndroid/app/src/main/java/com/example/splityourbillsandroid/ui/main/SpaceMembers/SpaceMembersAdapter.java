@@ -1,5 +1,6 @@
 package com.example.splityourbillsandroid.ui.main.SpaceMembers;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.splityourbillsandroid.R;
 import com.example.splityourbillsandroid.data.models.spaces.response.SpaceMembersResponse;
+import com.google.android.material.chip.Chip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,13 +41,8 @@ public class SpaceMembersAdapter extends RecyclerView.Adapter<SpaceMembersAdapte
     @NonNull
     @Override
     public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType==0) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem_space_members, parent, false);
             return new viewholder(view);
-        }else{
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem_empty, parent, false);
-            return new viewholder(view);
-        }
 
     }
 
@@ -66,7 +63,14 @@ public class SpaceMembersAdapter extends RecyclerView.Adapter<SpaceMembersAdapte
 //
             if (mList.get(position).getUserId()!=-1) {
                 holder.name.setText(mList.get(position).getUserDetails().getUserName());
-                holder.description.setText(mList.get(position).getUserDetails().getUserPhone());}
+                holder.description.setText(mList.get(position).getUserDetails().getUserPhone());
+            }else if (mList.get(position).getInviteId()!=-1){
+                holder.name.setText(mList.get(position).getInvites().getName());
+                holder.description.setText(mList.get(position).getInvites().getPhone());
+                invites++;
+                Log.d(TAG, "onBindViewHolder: invites : " + invites);
+                holder.chip.setVisibility(View.VISIBLE);
+            }
     }
 
     @Override
@@ -97,6 +101,7 @@ public class SpaceMembersAdapter extends RecyclerView.Adapter<SpaceMembersAdapte
     public class viewholder extends RecyclerView.ViewHolder {
 
         TextView name,description;
+        Chip chip;
 
         public viewholder(@NonNull View itemView) {
 
@@ -106,6 +111,7 @@ public class SpaceMembersAdapter extends RecyclerView.Adapter<SpaceMembersAdapte
 
             name = itemView.findViewById(R.id.name);
             description = itemView.findViewById(R.id.phone);
+            chip = itemView.findViewById(R.id.chip);
 
             itemView.setOnClickListener(onItemClickListener);
 
