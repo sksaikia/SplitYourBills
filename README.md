@@ -1,6 +1,12 @@
 # SplitYourBills- Backend
-This folder contains the backend code written in Java. The backend is running the localhost 8080.
-Database used : MySQL
+Backend - SpringBoot , db- MySQL<br/>
+Android - Java with Dagger 2
+
+
+## Current features
+ - JWT Authentication/Authorization
+ - Creation of space; add or invite people based on whether they have registered on the app
+ - Adding Transaction to spaces; split manually or split equally.
 
 ## Swagger API Documentation :  http://localhost:8080/swagger-ui.html#/
 ## Database Credentials (No password is set)
@@ -59,7 +65,7 @@ This folder contains the Android application.
 - [ ] Fix bugs (There will be many)
 - [ ] Add FCM Notifications
 - [ ] Add Privacy Policy and Terms Conditions
-- [ ] Add more bill spliting functionalites
+- [ ] Add more bill spliting functionalities
 - [ ] Integrate Payments (UPI)
 - [ ] Integrate oAuth (Google/Facebook)
 - [ ] Add Email functionality
