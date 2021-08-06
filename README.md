@@ -46,3 +46,21 @@ This folder contains the Android application.
   - OkHttp Interceptor (Logging of network calls)
 
 ## Required Permissions : 
+
+
+
+## Tasks to be completed: 
+
+- [x] Develop the basic backend 
+- [x] Develop the basic android app 
+- [ ] Improve the UI
+- [ ] Deploy the backend in cloud
+- [ ] Deploy the app in the playstore
+- [ ] Fix bugs (There will be many)
+- [ ] Add FCM Notifications
+- [ ] Add Privacy Policy and Terms Conditions
+- [ ] Add more bill spliting functionalites
+- [ ] Integrate Payments (UPI)
+- [ ] Integrate oAuth (Google/Facebook)
+- [ ] Add Email functionality
+- [ ] Add Text Message functionality
