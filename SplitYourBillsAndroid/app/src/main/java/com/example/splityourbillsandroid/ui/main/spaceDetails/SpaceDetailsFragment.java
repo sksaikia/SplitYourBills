@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.splityourbillsandroid.R;
@@ -56,6 +57,7 @@ public class SpaceDetailsFragment extends Fragment {
     ViewDetailsTransactionFragment viewDetailsTransactionFragment;
 
     MaterialButton addNewPeopleBTN,viewMembersBTN,newTransactionBTN,viewDetailsBTN;
+    ImageView imageView;
 
 
     List<TransactionsResponse> mList;
@@ -178,7 +180,7 @@ public class SpaceDetailsFragment extends Fragment {
         viewMembersBTN = view.findViewById(R.id.btn_view_members);
         newTransactionBTN = view.findViewById(R.id.btn_add_transaction);
         viewDetailsBTN = view.findViewById(R.id.btn_view_details);
-
+        imageView = view.findViewById(R.id.image_view);
     }
 
     private void subscribeForTransactionStatus() {
@@ -205,6 +207,12 @@ public class SpaceDetailsFragment extends Fragment {
             @Override
             public void onChanged(List<TransactionsResponse> transactionsResponses) {
                 mList = transactionsResponses;
+                if (mList.size()==0){
+                    imageView.setImageResource(R.drawable.no_txn);
+                    imageView.setVisibility(View.VISIBLE);
+                }else{
+                    imageView.setVisibility(View.GONE);
+                }
                 Log.d(TAG, "onChanged: " + mList.size());
                 adapter.updateListData(mList);
 

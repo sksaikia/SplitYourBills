@@ -12,9 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.splityourbillsandroid.R;
+import com.example.splityourbillsandroid.data.models.spaces.response.AddNewSpaceResponse;
 import com.example.splityourbillsandroid.data.models.transactions.PersonDetailsTXN;
 import com.example.splityourbillsandroid.data.models.transactions.TransactionDetailsResponse;
 import com.example.splityourbillsandroid.ui.main.MainViewModel;
@@ -32,7 +34,7 @@ public class ViewDetailsTransactionFragment extends Fragment {
 
     private static final String TAG = "ViewDetailsTransactionF";
 
-    String spaceId = "";
+    Long spaceId = Long.valueOf(0);
 
     RecyclerView recyclerView;
 
@@ -44,6 +46,7 @@ public class ViewDetailsTransactionFragment extends Fragment {
     @Inject
     MainViewModel viewModel;
 
+    ImageView imageView;
     TextView totalAmount,perPersonAmount;
 
 
@@ -69,23 +72,30 @@ public class ViewDetailsTransactionFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view);
         totalAmount = view.findViewById(R.id.total_amount);
         perPersonAmount = view.findViewById(R.id.per_person_amount);
+        imageView = view.findViewById(R.id.image_view);
 
 
+      //  spaceId = getArguments().getString(Constants.SPACE_ID);
+      //  Long spaceIdLong = Long.valueOf(spaceId);
 
-        spaceId = getArguments().getString(Constants.SPACE_ID);
-        Log.d(TAG, "onCreateView: Category Id::: " + spaceId);
-        Long spaceIdLong = Long.valueOf(spaceId);
+
+        subscribeForSpaceId();
+
 
         subscribeObserverForDetails();
-
-        viewModel.getTXNDetailsForSpaceId(spaceIdLong);
-
 
         setUpRecyclerView(recyclerView, adapter);
 
 
 
         return view;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        subscribeForSpaceId();
     }
 
     private void subscribeObserverForDetails() {
@@ -117,6 +127,18 @@ public class ViewDetailsTransactionFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
+    }
+
+    private void subscribeForSpaceId() {
+        viewModel.getSpaceDetails().observe(this, new Observer<AddNewSpaceResponse>() {
+            @Override
+            public void onChanged(AddNewSpaceResponse addNewSpaceResponse) {
+                spaceId = addNewSpaceResponse.getSpaceId();
+                Log.d(TAG, "onChanged: spaceId : " + spaceId);
+                //TODO doing the network call here guyms
+                viewModel.getTXNDetailsForSpaceId(spaceId);
+            }
+        });
     }
 
 
