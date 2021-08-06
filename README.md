@@ -53,7 +53,8 @@ This folder contains the Android application.
 
 ## Required Permissions : 
 
-
+ - Internet
+ - Read Contacts
 
 ## Tasks to be completed: 
 
