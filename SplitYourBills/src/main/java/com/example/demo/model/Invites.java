@@ -17,6 +17,7 @@ public class Invites extends DateAudit {
 
     @Column(name="phone_no")
     private String phoneNo;
+
     @Column(name="invite_name")
     private String inviteName;
 

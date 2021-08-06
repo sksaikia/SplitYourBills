@@ -114,7 +114,7 @@ public class SpaceMembersService {
             //Create a new entry in the invitations table with phone no and space_id
             //replace the currUserId value
             Long spaceId = spaceDTO.getSpaceId();
-            Invites newInvite = new Invites(spaceId,phoneNo);
+            Invites newInvite = new Invites(spaceId,phoneNo, spaceDTO.getName());
             invitesService.addInvite(newInvite);
 
             long inviteId =  invitesService.getInviteByPhoneNoAndSpaceId(spaceId,phoneNo);

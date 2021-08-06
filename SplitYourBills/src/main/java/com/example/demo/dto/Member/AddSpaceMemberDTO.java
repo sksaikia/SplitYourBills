@@ -7,8 +7,28 @@ public class AddSpaceMemberDTO {
     private Long id;
     private Long spaceId;
     private String phoneNo;
+    private String name;
 
 
+    public AddSpaceMemberDTO(SpaceMembers    spaceMembers){
+        this.setId(spaceMembers.getId());
+        this.setSpaceId(spaceMembers.getSpaceId());
+        this.setPhoneNo(spaceMembers.getPhoneNo());
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public AddSpaceMemberDTO(Long spaceId, String phoneNo, String name) {
+        this.spaceId = spaceId;
+        this.phoneNo = phoneNo;
+        this.name = name;
+    }
     public Long getId() {
         return id;
     }
@@ -36,8 +56,7 @@ public class AddSpaceMemberDTO {
     public AddSpaceMemberDTO() {
     }
 
-    public AddSpaceMemberDTO(Long id, Long spaceId, String phoneNo) {
-        this.id = id;
+    public AddSpaceMemberDTO( Long spaceId, String phoneNo) {
         this.spaceId = spaceId;
         this.phoneNo = phoneNo;
     }
