@@ -56,4 +56,11 @@ public class TransactionBody {
         this.phoneNo = phoneNo;
         this.spaceId = spaceId;
     }
+
+
+
+    public TransactionBody(Long amount, String description) {
+        this.amount = amount;
+        this.description = description;
+    }
 }

@@ -22,6 +22,7 @@ import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface APIInterface {
@@ -63,6 +64,14 @@ public interface APIInterface {
 
     @GET("api/transactions/details/{spaceId}")
     Observable<Response<TransactionDetailsResponse>> getTXNDetailsForSpace(@Path("spaceId") long spaceId);
+
+    @GET("api/transactions/get/{transactionId}")
+    Observable<Response<TransactionsResponse>> getTXNDetailsByID(@Path("transactionId") long transactionID);
+
+    @PUT("api/transactions/{transactionId}")
+    Observable<Response<DefaultResponse>> updateTXNDetailsByID(@Path("transactionId")
+                                                                                  long transactionID,@Body TransactionBody body);
+
 
 
 }

@@ -74,18 +74,21 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
 
     public class viewholder extends RecyclerView.ViewHolder {
 
-        TextView name,description;
+        TextView name,description,edit;
 
         public viewholder(@NonNull View itemView) {
 
             super(itemView);
 
-            itemView.setTag(this);
+
 
             name = itemView.findViewById(R.id.transaction_name);
             description = itemView.findViewById(R.id.transaction_description);
+            edit = itemView.findViewById(R.id.edit_btn);
 
-            itemView.setOnClickListener(onItemClickListener);
+            edit.setOnClickListener(onItemClickListener);
+
+            edit.setTag(this);
 
         }
 

@@ -106,5 +106,15 @@ public class AppDataManager implements AppDataManagerHelper{
         return apiHelper.getTXNDetailsForSpace(spaceId);
     }
 
+    @Override
+    public Observable<Response<TransactionsResponse>> getTXNDetailsByID(long transactionID) {
+        return apiHelper.getTXNDetailsByID(transactionID);
+    }
+
+    @Override
+    public Observable<Response<DefaultResponse>> updateTXNDetailsByID(long transactionID,TransactionBody body) {
+        return apiHelper.updateTXNDetailsByID(transactionID,body);
+    }
+
 
 }

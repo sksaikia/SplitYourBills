@@ -78,8 +78,8 @@ public class ProfileFragment extends Fragment {
         viewModel.getProfileResponse().observe(this, new Observer<ProfileResponse>() {
             @Override
             public void onChanged(ProfileResponse profileResponse) {
-                name.setText(profileResponse.getName());
-                phone.setText(profileResponse.getPhoneNo());
+                name.setText("Name : " + profileResponse.getName());
+                phone.setText(" Phone no : " + profileResponse.getPhoneNo());
             }
         });
     }

@@ -22,6 +22,7 @@ import com.example.splityourbillsandroid.ui.main.AddPeopleForSpace.AddPeopleFrag
 import com.example.splityourbillsandroid.ui.main.MainViewModel;
 import com.example.splityourbillsandroid.ui.main.SpaceMembers.SpaceMembersFragment;
 import com.example.splityourbillsandroid.ui.main.newTransaction.NewTransactionFragment;
+import com.example.splityourbillsandroid.ui.main.transactionDetails.TransactionDetailsFragment;
 import com.example.splityourbillsandroid.ui.main.viewDetailsTXN.ViewDetailsTransactionFragment;
 import com.example.splityourbillsandroid.utils.Constants;
 import com.google.android.material.button.MaterialButton;
@@ -66,6 +67,9 @@ public class SpaceDetailsFragment extends Fragment {
     LinearLayout linearLayout;
     String spaceId = "";
 
+    @Inject
+    TransactionDetailsFragment transactionDetailsFragment;
+
 
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -76,6 +80,16 @@ public class SpaceDetailsFragment extends Fragment {
             int position = viewHolder.getAdapterPosition();
 
             Log.d(TAG, "onClick: POsition ::: " + position);
+            long txnId =   mList.get(position).getTransactionId();
+
+
+            Bundle bundle = new Bundle();
+            bundle.putString(Constants.TXN_ID, String.valueOf(txnId));
+
+            transactionDetailsFragment.setArguments(bundle);
+
+            initializeFragments(transactionDetailsFragment);
+
 
         }
     };

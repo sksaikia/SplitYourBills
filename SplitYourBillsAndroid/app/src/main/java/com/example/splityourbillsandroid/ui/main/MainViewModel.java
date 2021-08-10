@@ -47,7 +47,7 @@ public class MainViewModel extends BaseViewModel {
     private MutableLiveData<List<SpaceMembersResponse>> spaceMembers;
     private MutableLiveData<ProfileResponse> profileResponse;
     private MutableLiveData<TransactionDetailsResponse> profileTXNDetailsResponse;
-
+    private MutableLiveData<TransactionsResponse> transactionDetailsById;
 
 
     private MutableLiveData<Integer> spaceResponseStatus;
@@ -58,6 +58,7 @@ public class MainViewModel extends BaseViewModel {
     private MutableLiveData<Long> transactionAmount;
     private MutableLiveData<Long> userId;
     private MutableLiveData<Integer> saveTransactionResponse;
+    private MutableLiveData<Integer> updateTXNResponseStatus;
 
     public MutableLiveData<Long> getTransactionAmount() {
         if (transactionAmount==null)
@@ -144,6 +145,16 @@ public class MainViewModel extends BaseViewModel {
         if (profileTXNDetailsResponse==null)
             profileTXNDetailsResponse = new MutableLiveData<>();
         return profileTXNDetailsResponse;
+    }
+    public MutableLiveData<TransactionsResponse> getTransactionDetailsByID(){
+        if (transactionDetailsById==null)
+            transactionDetailsById = new MutableLiveData<>();
+        return transactionDetailsById;
+    }
+    public MutableLiveData<Integer> getTXNUpdateResponseStatus(){
+        if (updateTXNResponseStatus == null)
+            updateTXNResponseStatus = new MutableLiveData<>();
+        return updateTXNResponseStatus;
     }
 
     public void getSpaceById(){
@@ -416,4 +427,60 @@ public class MainViewModel extends BaseViewModel {
             }
         });
     }
+
+    public void getTXNDetails(long transactionID){
+        if (transactionDetailsById==null)
+            transactionDetailsById = new MutableLiveData<>();
+        appDataManager.getTXNDetailsByID(transactionID).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Response<TransactionsResponse>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        getCompositeDisposable().add(d);
+                    }
+
+                    @Override
+                    public void onNext(@NonNull Response<TransactionsResponse> transactionsResponseResponse) {
+                        if (transactionsResponseResponse.code()==200)
+                            transactionDetailsById.setValue(transactionsResponseResponse.body());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    public void updateTXNDetailsByID(long transactionId,TransactionBody body){
+        appDataManager.updateTXNDetailsByID(transactionId,body).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Observer<Response<DefaultResponse>>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+                getCompositeDisposable().add(d);
+            }
+
+            @Override
+            public void onNext(@NonNull Response<DefaultResponse> defaultResponseResponse) {
+                if (defaultResponseResponse.code()==200)
+                    updateTXNResponseStatus.setValue(200);
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                updateTXNResponseStatus.setValue(500);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+
 }

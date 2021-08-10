@@ -84,5 +84,15 @@ public class AppApiHelper implements APIInterface{
         return api.getTXNDetailsForSpace(spaceId);
     }
 
+    @Override
+    public Observable<Response<TransactionsResponse>> getTXNDetailsByID(long transactionID) {
+        return api.getTXNDetailsByID(transactionID);
+    }
+
+    @Override
+    public Observable<Response<DefaultResponse>> updateTXNDetailsByID(long transactionID,TransactionBody body) {
+        return api.updateTXNDetailsByID(transactionID,body);
+    }
+
 
 }
