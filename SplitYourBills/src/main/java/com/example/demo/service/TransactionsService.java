@@ -190,7 +190,12 @@ public class TransactionsService {
         }
 
         int totalMembers = mapInvites.size()+mapPerson.size();
-        perPersonAmount = totalAmount/totalMembers;
+        if(totalMembers==0){
+            perPersonAmount = 0;
+        }else{
+            perPersonAmount = totalAmount/totalMembers;
+        }
+
 
         TransactionDetails transactionDetails = new TransactionDetails();
         transactionDetails.setTotalAmount(totalAmount);
