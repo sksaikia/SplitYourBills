@@ -136,33 +136,7 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
 		</dependency>
-
-
-
-
 	</dependencies>
-
-	<repositories>
-		<repository>
-			<id>spring-snapshots</id>
-			<url>http://repo.spring.io/snapshot</url>
-			<snapshots><enabled>true</enabled></snapshots>
-		</repository>
-		<repository>
-			<id>spring-milestones</id>
-			<url>http://repo.spring.io/milestone</url>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>spring-snapshots</id>
-			<url>http://repo.spring.io/snapshot</url>
-		</pluginRepository>
-		<pluginRepository>
-			<id>spring-milestones</id>
-			<url>http://repo.spring.io/milestone</url>
-		</pluginRepository>
-	</pluginRepositories>
 
 
 	<build>
@@ -170,7 +144,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>2.5.2</version>
 			</plugin>
 		</plugins>
 	</build>
