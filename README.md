@@ -68,6 +68,7 @@ This folder contains the Android application.
 
 - [x] Develop the basic backend 
 - [x] Develop the basic android app 
+- [ ] When an invited user registeres, the user_id field should be populated in all space members and transactions table.
 - [ ] Improve the UI
 - [ ] Deploy the backend in cloud
 - [ ] Deploy the app in the playstore
