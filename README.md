@@ -3,6 +3,14 @@ Backend - SpringBoot , db- MySQL<br/>
 Android - Java with Dagger 2
 
 
+## Instructions
+ - Start your mysql server(I am using Xampp)
+ - Create a database named split_your_bills in local.
+ - Change the username and password accordingly in the spring boot code, src.main.resources.application.properties (add password if necessary)
+ - Run the SpringBootApplication file to start the backend server
+ - Once the backend server is up and running you can check the swagger documentation
+ - Open Android Studio and start your Emulator. You will have to change the base url in the di.modules.app.RetrofitModule if you want to run the application on your android device.
+
 ## Current features
  - JWT Authentication/Authorization
  - Creation of space; add or invite people based on whether they have registered on the app
