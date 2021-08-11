@@ -10,15 +10,6 @@
             android:icon="@drawable/ic_space"
             android:title="Spaces" />
         <item
-            android:id="@+id/nav_friends"
-            android:enabled="true"
-            android:icon="@drawable/ic_people"
-            android:title="Friends" />
-        <item
-            android:id="@+id/nav_notifications"
-            android:icon="@drawable/ic_notifications"
-            android:title="Notifications" />
-        <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_person_white"
             android:title="Profile" />

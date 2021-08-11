@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,11 @@ import android.widget.ProgressBar;
 
 import com.example.splityourbillsandroid.R;
 import com.example.splityourbillsandroid.data.models.spaces.body.SpaceBody;
+import com.example.splityourbillsandroid.data.models.spaces.response.AddNewSpaceResponse;
 import com.example.splityourbillsandroid.ui.auth.AuthActivity;
 import com.example.splityourbillsandroid.ui.main.AddPeopleForSpace.AddPeopleFragment;
 import com.example.splityourbillsandroid.ui.main.MainViewModel;
+import com.example.splityourbillsandroid.utils.Constants;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -39,6 +42,10 @@ public class CreateSpaceFragment extends Fragment {
 
     @Inject
     AddPeopleFragment addPeopleFragment;
+
+    long spaceId = 0;
+
+    private static final String TAG = "CreateSpaceFragment";
 
     @Inject
     public CreateSpaceFragment() {
@@ -67,10 +74,24 @@ public class CreateSpaceFragment extends Fragment {
             }
         });
 
-        subscribeObserver();
+
+        subsribeForSpaceDetails();
+
 
 
         return view;
+    }
+
+
+    private void subsribeForSpaceDetails(){
+        viewModel.getSpaceDetails().observe(this, new Observer<AddNewSpaceResponse>() {
+            @Override
+            public void onChanged(AddNewSpaceResponse addNewSpaceResponse) {
+                spaceId =  addNewSpaceResponse.getSpaceId();
+                Log.d(TAG, "onChanged: " + addNewSpaceResponse.toString());
+                Log.d(TAG, "onChanged: spaceid " + spaceId);
+            }
+        });
     }
 
     private void subscribeObserver() {
@@ -81,9 +102,11 @@ public class CreateSpaceFragment extends Fragment {
                 int x = integer;
                 if (x == 201) {
                       showToast("Space Created");
+                    Log.d(TAG, "onChanged: spaceid " + spaceId);
 
                     //   progressBar.setVisibility(View.GONE)
-                    initializeFragments(addPeopleFragment);
+                   // initializeFragments(addPeopleFragment);
+                        initializeFragments(addPeopleFragment);
                 } else if (x == 401){
                     showToast("Not Authenticated");
                     Intent intent = new Intent(getActivity(), AuthActivity.class);
@@ -91,7 +114,7 @@ public class CreateSpaceFragment extends Fragment {
                     getActivity().finish();
                 }
                 else if (x == 500)
-                    showToast("Somewhere,Somehow Something went show");
+                    showToast("Somewhere,Somehow Something went wrong");
                 // progressBar.setVisibility(View.GONE);
             }
         });
@@ -115,6 +138,7 @@ public class CreateSpaceFragment extends Fragment {
         SpaceBody spaceBody = new SpaceBody(spaceName,spaceDescription);
 
         viewModel.createANewSpace(spaceBody);
+        subscribeObserver();
 
     }
 
@@ -142,6 +166,15 @@ public class CreateSpaceFragment extends Fragment {
 
     private void initializeFragments(Fragment frag) {
         String backStateName = frag.getClass().toString();
+
+
+
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.SPACE_ID, String.valueOf(spaceId));
+
+        frag.setArguments(bundle);
+
+
         //Log.d(TAG, "onBtnOtpLoginClicked: " + backStateName);
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         //   transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);

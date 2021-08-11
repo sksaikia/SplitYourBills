@@ -112,7 +112,7 @@ public class SpaceMembersFragment extends Fragment {
         initializeViews(view);
 
 
-        viewModel.getSpaceMembersBySpaceId(spaceId);
+
 
         subscribeForSpaceId();
 

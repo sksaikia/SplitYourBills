@@ -54,27 +54,21 @@ public class TransactionAmountAdapter extends RecyclerView.Adapter<RecyclerView.
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType==0) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem_amount, parent, false);
             return new viewholder(view);
-        }
-        else{
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem_empty, parent, false);
-            return new EmptyViewHolder(view);
-        }
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        if (holder.getItemViewType()==0){
 
             viewholder viewholder = (viewholder) holder;
             if (mList.get(position).getUserId()!=-1) {
                 viewholder.name.setText(mList.get(position).getUserDetails().getUserName());
+            }else{
+                viewholder.name.setText(mList.get(position).getInvites().getName());
             }
-        }
 
 
     }
@@ -91,13 +85,6 @@ public class TransactionAmountAdapter extends RecyclerView.Adapter<RecyclerView.
 //        return size;
         return mList.size();
     }
-    @Override
-    public int getItemViewType(int position) {
-        if (mList.get(position).getUserId()!=-1)
-            return 0;
-        return 1;
-    }
-
 
     public int getInviteCount(){
         return invites;

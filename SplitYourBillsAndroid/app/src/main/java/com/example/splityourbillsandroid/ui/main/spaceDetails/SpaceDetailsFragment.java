@@ -159,7 +159,7 @@ public class SpaceDetailsFragment extends Fragment {
         addNewPeopleBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initializeFragments(addPeopleFragment);
+                initializeFragments(addPeopleFragment,spaceId);
             }
         });
         viewMembersBTN.setOnClickListener(new View.OnClickListener() {

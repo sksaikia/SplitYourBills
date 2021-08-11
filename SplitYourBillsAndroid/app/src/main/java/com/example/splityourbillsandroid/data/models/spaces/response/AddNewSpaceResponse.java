@@ -52,4 +52,14 @@ public class AddNewSpaceResponse {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    @Override
+    public String toString() {
+        return "AddNewSpaceResponse{" +
+                "success=" + success +
+                ", message='" + message + '\'' +
+                ", SpaceId=" + SpaceId +
+                ", spaceName='" + spaceName + '\'' +
+                '}';
+    }
 }

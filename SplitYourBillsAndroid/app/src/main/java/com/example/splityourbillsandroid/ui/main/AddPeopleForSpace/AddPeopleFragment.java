@@ -25,6 +25,7 @@ import com.example.splityourbillsandroid.data.models.spaces.body.SpaceMembersBod
 import com.example.splityourbillsandroid.data.models.spaces.response.AddNewSpaceResponse;
 import com.example.splityourbillsandroid.ui.main.MainViewModel;
 import com.example.splityourbillsandroid.ui.main.SpaceMembers.SpaceMembersFragment;
+import com.example.splityourbillsandroid.utils.Constants;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -88,6 +89,9 @@ public class AddPeopleFragment extends Fragment {
 
         contactList = new ArrayList<>();
 
+        String id = getArguments().getString(Constants.SPACE_ID);
+        spaceId = Long.valueOf(id);
+
 
         importContactsBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,14 +99,6 @@ public class AddPeopleFragment extends Fragment {
                 getPermissionAndAddPeopleFromContacts();
             }
         });
-
-        saveBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addMembers();
-            }
-        });
-
         subscribeObserver();
 
         return view;
@@ -121,16 +117,6 @@ public class AddPeopleFragment extends Fragment {
         });
     }
 
-    private void addMembers() {
-//        for (Contacts c:contactList){
-//            System.out.println(c.toString());
-//            String phoneNo = c.getPhone();
-//            SpaceMembersBody spaceMembersBody = new SpaceMembersBody(phoneNo,spaceId);
-//            //TODO handle it more efficiently
-//            viewModel.addNewMemberInSpace(spaceMembersBody);
-//        }
-
-    }
 
     private void subscribeForSpaceId() {
        viewModel.getSpaceDetails().observe(this, new Observer<AddNewSpaceResponse>() {
@@ -145,7 +131,6 @@ public class AddPeopleFragment extends Fragment {
 
     private void initializeViews(View view) {
         importContactsBTN = view.findViewById(R.id.btn_import_contacts);
-        saveBTN = view.findViewById(R.id.btn_save);
         spaceNameTV = view.findViewById(R.id.tv_space_name);
         chipGroup = view.findViewById(R.id.chip_group);
         parentLayout = view.findViewById(R.id.parent_layout);

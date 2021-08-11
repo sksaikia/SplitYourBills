@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.example.splityourbillsandroid.R;
@@ -56,6 +57,7 @@ public class SpacesFragment extends Fragment {
     RecyclerView recyclerView;
     RelativeLayout linearLayout;
     FloatingActionButton fabNewSpace;
+    ImageView imageView;
 
 
 
@@ -126,6 +128,7 @@ public class SpacesFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view);
         linearLayout = view.findViewById(R.id.linear_layout);
         fabNewSpace = view.findViewById(R.id.fab);
+        imageView = view.findViewById(R.id.image_view);
 
 
         mList = new ArrayList<>();
@@ -161,6 +164,13 @@ public class SpacesFragment extends Fragment {
             public void onChanged(List<SpaceResponse> addNewSpaceRespons) {
 
                 mList = addNewSpaceRespons;
+                if (mList.size()==0){
+                    recyclerView.setVisibility(View.GONE);
+                    imageView.setVisibility(View.VISIBLE);
+                }else{
+                    recyclerView.setVisibility(View.VISIBLE);
+                    imageView.setVisibility(View.GONE);
+                }
                 Log.d(TAG, "onChanged: " + mList.size());
                 adapter.updateListData(mList);
 

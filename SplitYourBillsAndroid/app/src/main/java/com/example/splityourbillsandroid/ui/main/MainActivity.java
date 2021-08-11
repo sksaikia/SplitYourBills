@@ -73,22 +73,22 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-
-        viewModel.getProfileDetails();
-
-        subscribeForProfileDetails();
+//
+//        viewModel.getProfileDetails();
+//
+//        subscribeForProfileDetails();
 
 
     }
 
-    private void subscribeForProfileDetails() {
-        viewModel.getProfileResponse().observe(this, new Observer<ProfileResponse>() {
-            @Override
-            public void onChanged(ProfileResponse profileResponse) {
-                viewModel.setPersonId(profileResponse.getUserId());
-            }
-        });
-    }
+//    private void subscribeForProfileDetails() {
+//        viewModel.getProfileResponse().observe(this, new Observer<ProfileResponse>() {
+//            @Override
+//            public void onChanged(ProfileResponse profileResponse) {
+//                viewModel.setPersonId(profileResponse.getUserId());
+//            }
+//        });
+//    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -98,12 +98,6 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
             switch (item.getItemId()) {
                 case R.id.nav_space:
                     initFrag(spacesFragment);
-                    return true;
-                case R.id.nav_friends:
-                    initFrag(friendsFragment);
-                    return true;
-                case R.id.nav_notifications:
-                    initFrag(notificationsFragment);
                     return true;
                 case R.id.nav_profile:
                     initFrag(profileFragment);

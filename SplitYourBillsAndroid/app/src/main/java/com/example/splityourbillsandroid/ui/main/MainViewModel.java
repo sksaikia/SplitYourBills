@@ -247,9 +247,17 @@ public class MainViewModel extends BaseViewModel {
 
                     @Override
                     public void onNext(@NonNull Response<AddNewSpaceResponse> defaultResponseResponse) {
+                        Log.d(TAG, "onNext: default response : " + defaultResponseResponse.body().toString());
                         if (defaultResponseResponse.code()==201) {
                             createSpaceStatus.setValue(201);
-                            long spaceId = defaultResponseResponse.body().getSpaceId();
+
+                            String msg = defaultResponseResponse.body().getMessage();
+                            String[] msgs = msg.split(" ");
+                            String id = msgs[msgs.length-1];
+
+                            long spaceId = Long.valueOf(id);
+                            Log.d(TAG, "onNext: spaceId " + spaceId);
+
                             String spaceName = defaultResponseResponse.body().getSpaceName();
                             AddNewSpaceResponse response = new AddNewSpaceResponse(spaceId,spaceName);
                             spaceDetails.setValue(response);

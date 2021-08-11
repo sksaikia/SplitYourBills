@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 
 import android.text.Html;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import com.example.splityourbillsandroid.R;
 import com.example.splityourbillsandroid.data.models.authentication.body.RegisterBody;
 import com.example.splityourbillsandroid.ui.auth.AuthViewModel;
+import com.example.splityourbillsandroid.ui.auth.login.LoginFragment;
 import com.example.splityourbillsandroid.ui.main.MainActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -36,8 +38,6 @@ public class SignupFragment extends Fragment {
     LinearLayout parentLayout;
     ProgressBar progressBar;
 
-
-
     @Inject
     AuthViewModel authViewModel;
 
@@ -54,6 +54,8 @@ public class SignupFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_signup, container, false);
 
         AndroidSupportInjection.inject(this);
+
+
         initializeViews(view);
 
 
@@ -82,6 +84,7 @@ public class SignupFragment extends Fragment {
         String name = nameTV.getText().toString();
 
         RegisterBody registerBody = new RegisterBody(name,phone,email,password);
+
         authViewModel.registerNewUser(registerBody);
 
 
@@ -97,7 +100,7 @@ public class SignupFragment extends Fragment {
                 if (x == 201) {
                     showToast("Successfully Registered");
                     progressBar.setVisibility(View.GONE);
-                    goToNextActivity();
+                    initializeFragment(new LoginFragment());
                 } else if (x == 409)
                     showToast("Email or Phone Already exist");
                 else if (x == 500)
@@ -106,6 +109,16 @@ public class SignupFragment extends Fragment {
 
             }
         });
+    }
+
+    private void initializeFragment(LoginFragment frag) {
+        String backStateName = frag.getClass().toString();
+        //Log.d(TAG, "onBtnOtpLoginClicked: " + backStateName);
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        //   transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
+        transaction.replace(R.id.frame_layout_main, frag);
+        transaction.addToBackStack(backStateName);
+        transaction.commit();
     }
 
 

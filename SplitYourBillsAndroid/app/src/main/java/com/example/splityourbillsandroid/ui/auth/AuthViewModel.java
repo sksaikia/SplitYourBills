@@ -64,11 +64,13 @@ public class AuthViewModel extends BaseViewModel {
 
             @Override
             public void onNext(@NonNull Response<DefaultResponse> defaultResponseResponse) {
-                statusRegister.setValue(defaultResponseResponse.code());
+
                 if (defaultResponseResponse.code()==201){
                     //log in here
-                    login(new LoginBody(authBody.getEmail(),authBody.getPassword()));
+                 //   login(new LoginBody(authBody.getEmail(),authBody.getPassword()));
                 }
+
+                statusRegister.setValue(defaultResponseResponse.code());
             }
 
             @Override

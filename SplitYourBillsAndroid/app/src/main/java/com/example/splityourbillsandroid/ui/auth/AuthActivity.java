@@ -33,11 +33,11 @@ public class AuthActivity extends AppCompatActivity  implements HasSupportFragme
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
-
 
         AndroidInjection.inject(this);
 

@@ -28,7 +28,7 @@
         android:layout_centerHorizontal="true"
         android:textSize="28sp"
         android:layout_gravity="center"
-        android:text="Name SSSsss ssss" />
+        android:text="Person Name" />
 
 
     <TextView
@@ -41,7 +41,7 @@
         android:textColor="#FFF"
         android:textSize="28sp"
         android:layout_gravity="center"
-        tools:text="Phone no : 111222333" />
+        tools:text="Phone no : Person Phone no" />
 
     <TextView
         android:layout_width="wrap_content"
