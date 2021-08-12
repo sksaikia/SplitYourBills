@@ -1,23 +1,36 @@
-# SplitYourBills- Backend
+# SplitYourBills
+
+Spring Boot is used for the backend.
+
+Database for development : MySQL <br/>
+Database for production : Postgresql <br/>
+Deployed in Heroku <br/>
+
 Backend - SpringBoot , db- MySQL<br/>
 Android - Java with Dagger 2
 
 
-## Instructions
- - Start your mysql server(I am using Xampp)
- - Create a database named split_your_bills in local.
- - Change the username and password accordingly in the spring boot code, src.main.resources.application.properties (add password if necessary)
- - Run the SpringBootApplication file to start the backend server
- - Once the backend server is up and running you can check the swagger documentation
- - Open Android Studio and start your Emulator. You will have to change the base url in the di.modules.app.RetrofitModule if you want to run the application on your android device.
-
 ## Current features
- - JWT Authentication/Authorization
- - Creation of space; add or invite people based on whether they have registered on the app
- - Adding Transaction to spaces; split manually or split equally.
+ - Authentication and Authorization using JWT (JSON Web Token)
+ - Create a space - A Space is where you can add transactions for a trip.
+ - Create and edit Transactions - Transaction is the amount spent; it can be divided among everyone equally or manually type the amount.
+ - Add/Invite members to join a space - You can invite people from your contacts;whether they have registered on the app or not. 
+ - Once an invited user joins the app, he will be joining those invited spaces(to be implemented)
+ - Can view the total amount owed/to be paid by all members in the space
 
-## Swagger API Documentation :  http://localhost:8080/swagger-ui.html#/
-## Database Credentials (No password is set)
+## Proposed optimizations 
+ - Improve the UI (Not in a good state as of now)
+ - When invited users join the app, the invited spaces should show(he should join those spaces by default)
+ - Give Edit/Update/Delete methods for all the transactions/spaces
+ - Give edit/update  feature for profile details
+ - Make app flow more production ready;navigate from one fragment to another while completing a job
+ - Add multiple contacts at the same to a space(Currently adding one at a time)
+ - Document the code
+ - Write tests for the code
+
+
+## Swagger API Documentation :  https://split-your-bills-prod.herokuapp.com/swagger-ui.html#/
+## Database Credentials for development (No password is set)
 > username : root
 
 ## Project Structure: 
@@ -69,7 +82,7 @@ This folder contains the Android application.
 - [x] Develop the basic backend 
 - [x] Develop the basic android app 
 - [ ] Improve the UI
-- [ ] Deploy the backend in cloud
+- [x] Deploy the backend in cloud
 - [ ] Deploy the app in the playstore
 - [ ] Fix bugs (There will be many)
 - [ ] Add FCM Notifications
