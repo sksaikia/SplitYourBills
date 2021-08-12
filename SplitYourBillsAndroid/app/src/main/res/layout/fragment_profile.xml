@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#050507"
+    android:background="#212B38"
     tools:context=".ui.main.profile.ProfileFragment">
 
     <ImageView
@@ -83,7 +83,7 @@
         android:fontFamily="@font/roboto"
         android:text="LOG OUT"
         app:rippleColor="@color/md_pink_100"
-        app:backgroundTint="#C44BC1"
+        app:backgroundTint="#37465B"
         />
 
 </LinearLayout>

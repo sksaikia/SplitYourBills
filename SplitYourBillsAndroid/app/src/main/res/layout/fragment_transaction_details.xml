@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#050507"
+    android:background="#212B38"
     android:id="@+id/linear_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -141,7 +141,7 @@
             android:layout_below="@+id/input_layout2"
             android:text="Update"
             app:rippleColor="@color/md_pink_100"
-            app:backgroundTint="#C44BC1"
+            app:backgroundTint="#37465B"
             />
 
 

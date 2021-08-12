@@ -68,7 +68,7 @@ public class ViewTXNDetailsAdapter extends RecyclerView.Adapter<ViewTXNDetailsAd
             holder.description.setText("Settled up!!!");
         }else if (mList.get(position).getTotalPaid()>perPersonAmount){
             holder.description.setText("Owes " + (mList.get(position).getTotalPaid()-perPersonAmount));
-            holder.description.setTextColor(Color.parseColor("#00ff00"));
+            holder.description.setTextColor(Color.parseColor("#37465B"));
         }else if (mList.get(position).getTotalPaid()<perPersonAmount){
             holder.description.setText("Needs to pay : " +(perPersonAmount-mList.get(position).getTotalPaid()));
             holder.description.setTextColor(Color.parseColor("#FF0000"));

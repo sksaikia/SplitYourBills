@@ -111,7 +111,7 @@ public class TransactionAmountFragment extends Fragment {
 
         initializeViews(view);
 
-        viewModel.getSpaceMembersBySpaceId(spaceId);
+
 
         subscribeForSpaceId();
 

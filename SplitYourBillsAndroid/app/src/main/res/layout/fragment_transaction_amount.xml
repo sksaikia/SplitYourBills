@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#050507"
+    android:background="#212B38"
     android:id="@+id/parent_layout"
     android:orientation="vertical"
     android:weightSum="10"
@@ -12,10 +12,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:background="#050507"
+        android:background="#212B38"
         android:layout_height="0dp"
         android:layout_weight="9.5"
-        tools:listitem="@layout/listitem_space_home"
+        tools:listitem="@layout/listitem_amount"
         android:id="@+id/recycler_view">
 
     </androidx.recyclerview.widget.RecyclerView>
@@ -35,7 +35,7 @@
         android:layout_below="@+id/input_layout2"
         android:text="Save Transaction"
         app:rippleColor="@color/md_pink_100"
-        app:backgroundTint="#C44BC1"
+        app:backgroundTint="#37465B"
         />
 
 

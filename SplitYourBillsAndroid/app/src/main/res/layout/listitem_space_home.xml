@@ -12,9 +12,7 @@
         android:id="@+id/mat_card"
         android:layout_margin="10dp"
         app:cardElevation="2sp"
-        android:background="#b0c4d1"
-        app:strokeColor="#94e4fc"
-        app:strokeWidth="1dp"
+        android:background="#5AFFE7"
         app:cardCornerRadius="8dp"
         android:layout_height="80dp">
 
@@ -22,7 +20,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#94e4fc"
+            android:background="#5AFFE7"
             android:orientation="horizontal"
            >
 
@@ -46,10 +44,12 @@
                     android:layout_width="match_parent"
                     tools:text="Name"
                     android:paddingLeft="10dp"
-                    android:gravity="center"
-                    android:textColor="#3C5463"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="left"
+                    android:textColor="#37465B"
                     android:fontFamily="@font/roboto_medium"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
                     android:id="@+id/space_name"
                     android:layout_height="wrap_content">
 
@@ -59,10 +59,11 @@
                     android:layout_width="match_parent"
                     tools:text="Name"
                     android:paddingLeft="10dp"
-                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="left"
                     android:textColor="#507993"
                     android:fontFamily="@font/roboto"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:id="@+id/space_description"
                     android:layout_height="wrap_content">
 

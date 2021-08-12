@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class LoginFragment extends Fragment {
     ProgressBar progressBar;
     LinearLayout parentLayout;
 
+    private static final String TAG = "LoginFragment";
 
     @Inject
     AuthViewModel authViewModel;
@@ -58,7 +60,7 @@ public class LoginFragment extends Fragment {
 
         AndroidSupportInjection.inject(this);
         initializeViews(view);
-        subscribeObservers();
+
 
 
         String sourceString = "Don't have an account? " + "<b>" +"<font color=#FFFFFF>"+ "Join Now" + "</font>" + "</b>";
@@ -79,6 +81,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        subscribeObservers();
 
 
 
@@ -90,15 +93,21 @@ public class LoginFragment extends Fragment {
             @Override
             public void onChanged(Integer integer) {
                 int x = integer;
-                if (x == 200) {
+                Log.d(TAG, "onChanged: x : " + x);
+                 if (x==401){
+                    showToast("Error with email or password");
+                }
+                else if (x == 200) {
                     showToast("Successfully Registered");
                     progressBar.setVisibility(View.GONE);
                     goToNextActivity();
+                    getActivity().finish();
                 } else if (x == 409)
                     showToast("Email or Phone Already exist");
                 else if (x == 500)
                     showToast("Somewhere,Somehow Something went show");
-                progressBar.setVisibility(View.GONE);
+
+                progressBar.setVisibility(View.INVISIBLE);
 
             }
         });

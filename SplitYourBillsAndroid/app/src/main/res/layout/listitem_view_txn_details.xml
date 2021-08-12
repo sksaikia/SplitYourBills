@@ -12,9 +12,7 @@
         android:id="@+id/mat_card"
         android:layout_margin="10dp"
         app:cardElevation="2sp"
-        android:background="#050507"
-        app:strokeColor="#C44BC1"
-        app:strokeWidth="1dp"
+        android:background="#5AFFE7"
         app:cardCornerRadius="8dp"
         android:layout_height="80dp">
 
@@ -22,7 +20,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#050507"
+            android:background="#5AFFE7"
             android:orientation="vertical"
             >
 
@@ -35,7 +33,7 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:layout_gravity="center"
-                android:textColor="#FFFFFF"
+                android:textColor="#37465B"
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="22sp"
                 android:id="@+id/transaction_name"
@@ -49,7 +47,7 @@
                 android:paddingLeft="10dp"
                 android:gravity="center"
                 android:layout_gravity="center"
-                android:textColor="#C1C1C1"
+                android:textColor="#37465B"
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="22sp"
                 android:id="@+id/transaction_description"

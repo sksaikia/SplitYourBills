@@ -104,8 +104,6 @@ public class AuthViewModel extends BaseViewModel {
                         statusLogin.setValue(defaultResponseResponse.code());
                         Log.d(TAG, "onNext: response login : " + defaultResponseResponse.body());
                         Log.d(TAG, "onNext: response login : " + defaultResponseResponse.code());
-                        Log.d(TAG, "onNext: body " + defaultResponseResponse.body().getAccessToken());
-                        Log.d(TAG, "onNext: body " + defaultResponseResponse.body().toString());
 
                         if (defaultResponseResponse.code()==200){
                             appDataManager.setAccessToken(defaultResponseResponse.body().getAccessToken());

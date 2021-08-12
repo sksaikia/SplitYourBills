@@ -12,19 +12,17 @@
         android:id="@+id/mat_card"
         android:layout_margin="10dp"
         app:cardElevation="2sp"
-        android:background="#050507"
-        app:strokeColor="#C44BC1"
-        app:strokeWidth="1dp"
+        android:background="#5AFFE7"
         app:cardCornerRadius="8dp"
-        android:layout_height="wrap_content">
+        android:layout_height="90dp">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#050507"
+            android:layout_height="90dp"
+            android:background="#5AFFE7"
             android:weightSum="2"
-            android:orientation="horizontal"
+            android:orientation="vertical"
            >
 
 
@@ -34,8 +32,9 @@
                 android:layout_weight="1"
                 tools:text="Name"
                 android:paddingLeft="10dp"
-                android:layout_gravity="center"
-                android:textColor="#FFFFFF"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:textColor="#37465B"
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="22sp"
                 android:id="@+id/transaction_name"
@@ -44,15 +43,20 @@
             </TextView>
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
                 android:layout_weight="1"
-                android:layout_gravity="left"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="30dp"
+                android:paddingLeft="20dp"
                 android:hint="Write amount here"
                 android:textColorHint="#737373"
                 android:inputType="number"
+                android:textSize="14sp"
+                android:background="@drawable/rounded_edittext"
                 android:id="@+id/et_amount"
-                android:textColor="#fff">
+                android:textColor="#37465B">
 
             </EditText>
 

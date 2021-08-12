@@ -19,7 +19,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:background="#b0c4d1"
+        android:background="#212B38"
         android:layout_height="wrap_content"
         tools:listitem="@layout/listitem_space_home"
         android:id="@+id/recycler_view">
